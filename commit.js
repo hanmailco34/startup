@@ -18,4 +18,4 @@ function execFunc(cmd) {
 }
 
 run();
-console.log(1);
+console.log(2);
