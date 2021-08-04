@@ -4,6 +4,7 @@ const htmlPath = path.join(__dirname,'..','front','html');
 module.exports = (app) => {
     app.get('/',(req,res)=>{
         const indexHtmlPath = path.join(htmlPath,'index.html');
+        console.log(indexHtmlPath);
         res.sendFile(indexHtmlPath);
     });
 
