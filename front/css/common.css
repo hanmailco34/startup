@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#loading {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../img/loading.gif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: none;
+}
