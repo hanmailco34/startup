@@ -11,7 +11,7 @@ async function run() {
 function execFunc(cmd) {
     return new Promise((res,rej)=>{
         exec(cmd,(err,stdout,stderr)=>{
-            if(err) console.error(err);
+            if(err) console.error(error);
             res(stdout? stdout : stderr);
         })
     })
