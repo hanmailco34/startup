@@ -8,7 +8,7 @@ async function run() {
         SSH_AUTH_SOCK: '/tmp/ssh-6aJm9YfpNpl8/agent.1883',
         SSH_AGENT_PID: '1884'
     }
-    await execFunc('ssh-add ~/.ssh/linkprice');
+    await execFunc('ssh-add ~/.ssh/linkprice',env);
     await execFunc('git add .');
     await execFunc(`git commit -m '${argv}'`);
     await execFunc('git push heroku master');
