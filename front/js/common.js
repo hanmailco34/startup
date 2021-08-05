@@ -7,24 +7,42 @@ function rpcGet(url,param,CBF,CBP) {
 }
 
 function includeHTML(title) {
-    rpcGet(hostUrl+'/html/'+title+'.html','',CBHTML);
+    rpcGet(hostUrl+'/html/'+title+'.html','',CBHTML,title);
 }
 
-function clearHead() {
+function clearHead(head) {
+    var cmd = false;
+    var tempArr = [];
+    
+    head.childNodes.forEach((e,idx)=>{        
+        if(idx %2 === 1) {
+            if(cmd) tempArr.push(e);
+            if(e.nodeName === '#comment') cmd = true;
+        }
+    });
+    tempArr.forEach(e=>{
+        head.removeChild(e);
+    })
+}
+
+function includeJS(head,title) {
+    const sc = document.createElement('script');
+    sc.src = `../js/${title}.js`;
+    head.appendChild(sc);
+}
+
+function includeCSS(head,title) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `../css/${title}.css`;
+    head.appendChild(link);
+}
+
+const CBHTML = (res,title) => {
     const head = $('head')[0];
-    console.log(head);
-}
-
-function includeJS(title) {
-    
-}
-
-function includeCSS(title) {
-    
-}
-
-const CBHTML = (res) => {
-    clearHead();
+    clearHead(head);
+    includeJS(head,title);
+    includeCSS(head,title)
     $('#app').html(res);
 }
 

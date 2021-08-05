@@ -6,7 +6,8 @@ $(function(){
     var testCBP = {
         'test':'dd'
     }
-    console.log(location);
+
     rpcGet(testGetUrl,'',testCB,testCBP);
+    
     includeHTML('login');
 })
