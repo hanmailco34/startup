@@ -18,5 +18,7 @@ function execFunc(cmd) {
     })
 }
 
+//git bash
+//eval $(ssh-agent -s)
+
 run();
-console.log(8);
