@@ -4,6 +4,10 @@ var argv = process.argv[2];
 async function run() {
     var t= await execFunc('ssh-agent -s');
     console.log(t);
+    var env = {
+        SSH_AUTH_SOCK: '/tmp/ssh-6aJm9YfpNpl8/agent.1883',
+        SSH_AGENT_PID: '1884'
+    }
     await execFunc('ssh-add ~/.ssh/linkprice');
     await execFunc('git add .');
     await execFunc(`git commit -m '${argv}'`);
