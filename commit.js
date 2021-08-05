@@ -4,8 +4,8 @@ var argv = process.argv[2];
 async function run() {
     await execFunc('git add .');
     await execFunc(`git commit -m '${argv}'`);
-    await execFunc('git push heroku main');
-    await execFunc('git push origin main');
+    await execFunc('git push heroku master');
+    await execFunc('git push origin master');
 }
 
 function execFunc(cmd) {
@@ -18,4 +18,4 @@ function execFunc(cmd) {
 }
 
 run();
-console.log(5);
+console.log(6);
