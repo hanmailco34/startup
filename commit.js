@@ -2,6 +2,7 @@ var exec = require('child_process').exec;
 var argv = process.argv[2];
 
 async function run() {
+    await execFunc('ssh-agent -s');
     await execFunc('ssh-add ~/.ssh/linkprice');
     await execFunc('git add .');
     await execFunc(`git commit -m '${argv}'`);
