@@ -7,7 +7,25 @@ function rpcGet(url,param,CBF,CBP) {
 }
 
 function includeHTML(title) {
+    rpcGet(hostUrl+'/html/'+title+'.html','',CBHTML);
+}
 
+function clearHead() {
+    const head = $('head')[0];
+    console.log(head);
+}
+
+function includeJS(title) {
+    
+}
+
+function includeCSS(title) {
+    
+}
+
+const CBHTML = (res) => {
+    clearHead();
+    $('#app').html(res);
 }
 
 function rpcFail() {
