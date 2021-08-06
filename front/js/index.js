@@ -1,3 +1,5 @@
+import css from '../css/index.css';
+
 $(function(){
     var testCB = (data,cp) => {
         console.log(data);
@@ -11,3 +13,5 @@ $(function(){
     
     includeHTML('login');
 })
+
+console.log(css);
