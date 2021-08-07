@@ -6,8 +6,17 @@
         <link rel="shortcut icon" href="../img/favicon.ico">
         
         <script src="../util/jquery_v360.js"></script>
-        <script src="../../public/app.4eca75a220455311d567.js"></script>
         
+        <script>
+            $(async function(){
+                var title = await $.get('http://localhost:5000/public/manifest.json');
+                title = title['common.js'];
+                console.log(title);
+                const sc = document.createElement('script');
+                sc.src = `../../public/${title}`;
+                $('head')[0].appendChild(sc);
+            })
+        </script>
         <!-- <script src="../js/rpc.js"></script>
         <script src="../js/common.js"></script>
         <link rel="stylesheet" href="../css/common.css"> -->

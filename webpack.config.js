@@ -1,17 +1,17 @@
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
-const jsArr = fs.readdirSync('./front/js');
+const { WebpackManifestPlugin  } = require('webpack-manifest-plugin');
+const entry = fs.readdirSync('./front/js');
+const entrys = {};
 
-for(var i = 0; i < jsArr.length; i++) {
-    jsArr[i] = './front/js/' + jsArr[i];
+for(var i = 0; i < entry.length; i++) {
+    entrys[entry[i].split('.')[0]] = './front/js/' + entry[i];
 }
 
 module.exports = {
     mode: 'development',  //production
-    entry: {
-        app: jsArr,
-    },
+    entry: entrys,
     output: {
         path: path.resolve(__dirname,'public'),
         filename: '[name].[chunkhash].js',
@@ -28,6 +28,14 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new WebpackManifestPlugin({
+            map: f => {
+                f.path = f.path.replace(/^auto/,'');
+                return f;
+            }
+        })
+    ]
     /* plugins: [],
     optimization: {},
     resolve: {
