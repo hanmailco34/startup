@@ -7,12 +7,10 @@ app.listen(port,(res,err)=>{
     console.log('home'+port);
 });
 
-/* app.use('/css',express.static('./front/css'));
-app.use('/img',express.static('./front/img'));
-app.use('/util',express.static('./front/util'));
-app.use('/js',express.static('./front/js')); */
-app.use('/util',express.static('./front/util'));
-app.use('/public',express.static('./public'));
+app.use('/img',express.static('./public/img'));
+app.use('/util',express.static('./public/util'));
+app.use('/css',express.static('./public/css'));
+app.use('/js',express.static('./public/js'));
 
 app.use((req,res,next)=>{
     if(accessRefer.indexOf(req.headers.referer) === -1 && req.path !== '/') {
@@ -22,6 +20,6 @@ app.use((req,res,next)=>{
     else next();
 })
 
-app.use('/html',express.static('./front/html'));
+app.use('/html',express.static('./public/html'));
 
 const router = require('./server/route.js')(app);

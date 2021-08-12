@@ -1,5 +1,5 @@
 const path = require('path');
-const htmlPath = path.join(__dirname,'..','front','html');
+const htmlPath = path.join(__dirname,'..','public','html');
 
 module.exports = (app) => {    
     app.get('/',(req,res)=>{

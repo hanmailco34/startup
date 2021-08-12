@@ -1,4 +1,7 @@
-import css from '../css/index.css';
+import '../css/index.css';
+import '../html/index.html';
+import common from './common';
+import rpc from './rpc';
 
 $(function(){
     var testCB = (data,cp) => {
@@ -9,9 +12,7 @@ $(function(){
         'test':'dd'
     }
 
-    rpcGet(testGetUrl,'',testCB,testCBP);
+    common.rpcGet(rpc.testGetUrl,'',testCB,testCBP);   
     
-    includeHTML('login');
+    common.includeHTML('login');
 })
-
-console.log(css);

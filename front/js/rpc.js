@@ -4,5 +4,11 @@ const port = (location.port !== '')? ':' + location.port : location.port;
 
 const hostUrl = protocol + '//' + hostName + port;
 
-const testUrl = hostUrl + '/test'
-const testGetUrl = testUrl + '/get';
+const testUrl = hostUrl + '/test';
+
+const rpc = {
+    hostUrl : hostUrl,
+    testGetUrl : testUrl + '/get'
+}
+
+export default rpc;
