@@ -1,5 +1,3 @@
-import '../css/index.css';
-import '../html/index.html';
 import common from './common';
 import rpc from './rpc';
 

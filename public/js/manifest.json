@@ -1,11 +1,12 @@
 {
-  "common": "common.f2a69638d3f401a29f8f.js",
-  "index": "index.c89ce40ddf5045d08b1c.js",
-  "join": "join.b3ec4d61d806e4dcfe8f.js",
-  "login": "login.be72e9704bf59d20e5f6.js",
-  "rpc": "rpc.9953f589abdef5d6c28c.js",
-  "jquery_v360": "9aac3fd615c6b825afff.js",
-  "loading": "79c31ef68f03247cc60f.gif",
-  "favicon": "f2b51090dc5572827bb9.ico",
-  "": "../html/login.html"
+  "common": "/js/common.286857ba9fa7f7585e85.js",
+  "index": "/js/index.45a6d9cbc1b56a898912.js",
+  "join": "/js/join.b3ec4d61d806e4dcfe8f.js",
+  "login": "/js/login.dea8da1b553e6fac97bf.js",
+  "rpc": "/js/rpc.475bf065e2194d15e46c.js",
+  "jquery_v360": "/js/9aac3fd615c6b825afff.js",
+  "loading": "/js/79c31ef68f03247cc60f.gif",
+  "favicon": "/js/f2b51090dc5572827bb9.ico",
+  "": "/js/../html/join.html",
+  "manifest": "/js/511e0b4620846613ec65.js"
 }

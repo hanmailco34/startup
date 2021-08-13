@@ -16,6 +16,12 @@ function clearHead(head) {
     })
 }
 
+function includeJS(head,title) {
+    const sc = document.createElement('script');
+    sc.src = `${manifestObj[title]}`;
+    head.appendChild(sc);
+}
+
 function includeCSS(head,title) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -25,8 +31,9 @@ function includeCSS(head,title) {
 
 function CBHTML(res,title) {
     const head = $('head')[0];
-    clearHead(head);
-    includeCSS(head,title)
+    //clearHead(head);
+    includeJS(head,title);
+    includeCSS(head,title);
     $('#app').html(res);
 }
 

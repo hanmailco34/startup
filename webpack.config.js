@@ -6,6 +6,18 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const entry = fs.readdirSync('./front/js');
 const entrys = {};
+const htmlEntry = fs.readdirSync('./front/html');
+const htmlEntrys = [];
+htmlEntry.forEach(e=>{
+    htmlEntrys.push(
+        new HtmlWebPackPlugin({
+            hash:true,
+            template:'./front/html/' + e,
+            filename: '../html/' + e,
+            inject: false
+        })
+    )
+})
 
 for(var i = 0; i < entry.length; i++) {
     entrys[entry[i].split('.')[0]] = './front/js/' + entry[i];
@@ -16,6 +28,7 @@ module.exports = {
     entry: entrys,
     output: {
         path: path.resolve(__dirname,'public','js'),
+        publicPath: '/js/',
         filename: '[name].[chunkhash].js',
         clean: true
     },
@@ -28,13 +41,6 @@ module.exports = {
                     'css-loader',
                 ],
             },
-            /* {
-                test: /\.html$/,
-                type: './front/html',
-                generator: {
-                    filename: '[name][ext]',
-                },
-            }, */
             {
                 test: /\.html$/,
                 use : [
@@ -49,18 +55,6 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            hash:true,
-            template:'./front/html/index.html',
-            filename: '../html/index.html',
-            inject: false
-        }),
-        new HtmlWebPackPlugin({
-            hash:true,
-            template:'./front/html/login.html',
-            filename: '../html/login.html',
-            inject: false
-        }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [path.join(__dirname,'public')]
         }),
@@ -75,7 +69,7 @@ module.exports = {
             filename: "../css/[name].[contenthash].css",
             chunkFilename: "../css/[name].[contenthash].css"
         }),
-    ],
+    ].concat(htmlEntrys),
     /* 
     optimization: {},
     resolve: {
