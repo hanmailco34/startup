@@ -51,7 +51,7 @@ module.exports = {
                         }
                     },
                 ],
-            },
+            }
         ],
     },
     plugins: [
@@ -66,9 +66,9 @@ module.exports = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: "../css/[name].[contenthash].css",
-            chunkFilename: "../css/[name].[contenthash].css"
-        }),
+            filename: "../css/[name].css",
+            chunkFilename: "../css/[name].css"
+        })
     ].concat(htmlEntrys),
     /* 
     optimization: {},

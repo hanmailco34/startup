@@ -1,14 +1,14 @@
-import '../css/common.css';
 import rpc from './rpc';
 
 function clearHead(head) {
     var cmd = false;
     var tempArr = [];
     
-    head.childNodes.forEach((e,idx)=>{        
-        if(idx % 2 === 1 && e.src) {
+    head.childNodes.forEach((e)=>{ 
+        if((e.src || e.name === 'common' || e.tagName === 'LINK')) {
+            console.log(e);
             if(cmd) tempArr.push(e);
-            if(e.src.indexOf('index') !== -1) cmd = true;
+            if(e.name === 'common') cmd = true;
         }
     });
     tempArr.forEach(e=>{
@@ -31,7 +31,7 @@ function includeCSS(head,title) {
 
 function CBHTML(res,title) {
     const head = $('head')[0];
-    //clearHead(head);
+    clearHead(head);
     includeJS(head,title);
     includeCSS(head,title);
     $('#app').html(res);

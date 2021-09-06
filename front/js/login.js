@@ -1,6 +1,8 @@
-import common from './common.js';
+import common from './common';
 import '../css/login.css';
 
-function go(title) {
-    common.includeHTML(title);
-}
+$(function(){
+    $('#joinBtn').on("click",()=>{
+        common.includeHTML('join');
+    });
+})

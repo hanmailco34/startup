@@ -1,12 +1,13 @@
 {
-  "common": "/js/common.286857ba9fa7f7585e85.js",
-  "index": "/js/index.45a6d9cbc1b56a898912.js",
-  "join": "/js/join.b3ec4d61d806e4dcfe8f.js",
-  "login": "/js/login.dea8da1b553e6fac97bf.js",
-  "rpc": "/js/rpc.475bf065e2194d15e46c.js",
+  "common": "/js/common.1ae7996a8f45ea101351.js",
+  "index": "/js/index.60fd30c97f932049738f.js",
+  "join": "/js/join.2e4afd7d65a1f655b4f5.js",
+  "login": "/js/login.26a16f67cabde3bdf256.js",
+  "rpc": "/js/rpc.9953f589abdef5d6c28c.js",
   "jquery_v360": "/js/9aac3fd615c6b825afff.js",
   "loading": "/js/79c31ef68f03247cc60f.gif",
+  "test": "/js/e5a690d29360adafc9c9.jpg",
   "favicon": "/js/f2b51090dc5572827bb9.ico",
-  "": "/js/../html/join.html",
-  "manifest": "/js/511e0b4620846613ec65.js"
+  "": "/js/../html/login.html",
+  "manifest": "/js/9b47ad0f9c672f26ea5e.js"
 }
