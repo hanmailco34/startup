@@ -4,11 +4,11 @@ const port = (location.port !== '')? ':' + location.port : location.port;
 
 const hostUrl = protocol + '//' + hostName + port;
 
-const testUrl = hostUrl + '/test';
+const crosswordUrl = hostUrl + '/crossword';
 
 const rpc = {
     hostUrl : hostUrl,
-    testGetUrl : testUrl + '/get'
+    crosswordSearchUrl : crosswordUrl + '/search'
 }
 
 export default rpc;

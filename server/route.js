@@ -7,6 +7,5 @@ module.exports = (app) => {
         res.sendFile(indexHtmlPath);
     });
 
-    require('./test')('/test',app);
-    require('./test2')('/test2',app);
+    require('./crossword')('/crossword',app);
 }

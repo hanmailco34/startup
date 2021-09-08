@@ -14,10 +14,6 @@ body {
     background-size: 100% 100%;
     display: none;
 }
-
-.common_btn {
-    background-image: url(/js/e5a690d29360adafc9c9.jpg);
-}
 /*!**********************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./front/css/join.css ***!
   \**********************************************************************/

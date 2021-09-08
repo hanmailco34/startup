@@ -10,7 +10,7 @@ $(function(){
         'test':'dd'
     }
 
-    common.rpcGet(rpc.testGetUrl,'',testCB,testCBP);   
+    common.rpcGet(rpc.crosswordSearchUrl,'',testCB,testCBP);   
     
     common.includeHTML('login');
 })

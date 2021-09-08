@@ -6,7 +6,6 @@ function clearHead(head) {
     
     head.childNodes.forEach((e)=>{ 
         if((e.src || e.name === 'common' || e.tagName === 'LINK')) {
-            console.log(e);
             if(cmd) tempArr.push(e);
             if(e.name === 'common') cmd = true;
         }
