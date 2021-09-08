@@ -1,4 +1,5 @@
 const express = require('express');
+const sequelize = require('./server/db/sequelize');
 const app = express();
 const port = process.env.PORT || 5000;
 const accessRefer = ['http://localhost:5000/','https://k-start-up.herokuapp.com/'];
@@ -21,5 +22,5 @@ app.use((req,res,next)=>{
 })
 
 app.use('/html',express.static('./public/html'));
-
+sequelize.connection();
 const router = require('./server/route.js')(app);
