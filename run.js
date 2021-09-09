@@ -6,6 +6,7 @@ const accessRefer = ['http://localhost:5000/','https://k-start-up.herokuapp.com/
 
 app.listen(port,(res,err)=>{
     console.log('home'+port);
+    sequelize.connection();
 });
 
 app.use('/img',express.static('./public/img'));
@@ -22,5 +23,5 @@ app.use((req,res,next)=>{
 })
 
 app.use('/html',express.static('./public/html'));
-sequelize.connection();
+
 const router = require('./server/route.js')(app);
