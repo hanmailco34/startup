@@ -1,8 +1,13 @@
 module.exports = (sequelize,DataTypes,Model) => {
-    class Test extends Model {}
+    class Test extends Model {
+        static createTest(arg1,arg2) {
+            return this.create({test1:arg1,test2:arg2});
+        }
+    }
 
     const options = {
-        sequelize
+        sequelize,
+        timestamps: true,
     }
 
     Test.init({
@@ -14,5 +19,5 @@ module.exports = (sequelize,DataTypes,Model) => {
         }
     },options);
 
-    console.log(Test === sequelize.models.Test);
+    return Test;
 }

@@ -1,0 +1,29 @@
+2021-10-25 23:27:42 info: server comme:
+2021-10-25 23:28:16 info: server come:::1
+2021-10-25 23:28:22 info: server come:::ffff:192.168.219.102
+2021-10-25 23:29:36 info: server come:1
+2021-10-25 23:29:43 info: server come:192.168.219.102
+2021-10-25 23:35:26 info: db.Member.joinMember id:6 sns_id:test,sns_type:test,nickname:test,email:test
+2021-10-25 23:52:12 info: server come:1
+2021-10-25 23:52:12 info: HTTP/1.1 GET
+
+2021-10-25 23:52:12 info: HTTP/1.1 GET
+
+2021-10-25 23:52:12 info: HTTP/1.1 GET
+
+2021-10-25 23:52:34 info: db.Member.joinMember id:7 sns_id:test,sns_type:test,nickname:test,email:test
+2021-10-25 23:52:34 info: HTTP/1.1 POST
+
+2021-10-25 23:54:12 info: db.Member.joinMember id:8 sns_id:test,sns_type:test,nickname:test,email:test
+2021-10-25 23:54:12 info: HTTP/1.1 POST ::1 /member/join - 200 9 - PostmanRuntime/7.28.4 236.091 ms
+
+2021-10-25 23:59:10 info: HTTP/1.1 POST ::1 /member/join - 200 10 - PostmanRuntime/7.28.4 222.251 ms
+
+2021-10-25 23:59:32 info: HTTP/1.1 POST ::1 /member/join - 200 10 - PostmanRuntime/7.28.4 1692.173 ms
+
+2021-10-25 23:59:47 info: HTTP/1.1 GET ::ffff:192.168.219.102 / - 304 - - Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G970N) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/15.0 Chrome/90.0.4430.210 Mobile Safari/537.36 4.311 ms
+
+2021-10-25 23:59:48 info: HTTP/1.1 GET ::ffff:192.168.219.102 /crossword/search - 304 - http://192.168.219.105:5000/ Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G970N) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/15.0 Chrome/90.0.4430.210 Mobile Safari/537.36 1.066 ms
+
+2021-10-25 23:59:48 info: HTTP/1.1 GET ::ffff:192.168.219.102 /html/login.html - 304 - http://192.168.219.105:5000/ Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G970N) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/15.0 Chrome/90.0.4430.210 Mobile Safari/537.36 1.645 ms
+
