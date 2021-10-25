@@ -18,12 +18,12 @@ app.use('/css',express.static('./public/css'));
 app.use('/js',express.static('./public/js'));
 app.use(morgan('HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms',{stream}));
 
-/* app.use((req,res,next)=>{
+app.use((req,res,next)=>{
     if(accessRefer.indexOf(req.headers.referer) === -1 && req.path !== '/') {
         res.send('잘못된 접근입니다.');
     }
     else next();
-}) */
+})
 
 app.use('/html',express.static('./public/html'));
 

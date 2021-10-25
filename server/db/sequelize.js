@@ -1,5 +1,10 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const { dbUrl } = require('./db_config');
+if(process.env.DATABASE_URL) {
+    let dbUrl = process.env.DATABASE_URL;
+}
+else {
+    let { dbUrl } = require('./db_config');
+}
 const fs = require('fs');
 const path = require('path');
 
