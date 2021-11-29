@@ -1,4 +1,5 @@
 const {db} = require('./db/sequelize');
+const {logger} = require('./logger');
 
 module.exports = (path,app) => {
     app.post(path+'/join',async (req,res)=>{
@@ -7,6 +8,7 @@ module.exports = (path,app) => {
         const nickname = req.body.nickname;
         const email = req.body.email;
         const result = await db.Member.joinMember(sns_id,sns_type,nickname,email);
+        logger.info(`ip:${req.clientIp}, sns_id:${sns_id}, sns_type:${sns_type}, nickname:${nickname}, email:${email}`);
         return res.json({res:result.id});
     })
 }

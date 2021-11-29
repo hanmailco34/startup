@@ -2,11 +2,11 @@
   "common": "/js/common.c50bc5d9431f61e020b9.js",
   "index": "/js/index.5de3a847e35f591e43f9.js",
   "join": "/js/join.b72b82985a1163beb2f4.js",
-  "login": "/js/login.b7b834e04bcd8c5a58a0.js",
+  "login": "/js/login.d8939f0dac971e8bc3b7.js",
   "rpc": "/js/rpc.8dc18c3930c4891fca10.js",
   "jquery_v360": "/js/9aac3fd615c6b825afff.js",
   "loading": "/js/79c31ef68f03247cc60f.gif",
   "favicon": "/js/f2b51090dc5572827bb9.ico",
-  "": "/js/../html/login.html",
+  "": "/js/../html/join.html",
   "manifest": "/js/9b47ad0f9c672f26ea5e.js"
 }

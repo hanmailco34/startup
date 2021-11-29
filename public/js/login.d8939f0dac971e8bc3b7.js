@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ \"./front/js/common.js\");\n/* harmony import */ var _css_login_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/login.css */ \"./front/css/login.css\");\n\r\n\r\n\r\n$(function(){\r\n    $('#joinBtn').on(\"click\",()=>{\r\n        _common__WEBPACK_IMPORTED_MODULE_0__.default.includeHTML('join');\r\n    });\r\n})\n\n//# sourceURL=webpack://startup/./front/js/login.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ \"./front/js/common.js\");\n/* harmony import */ var _css_login_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/login.css */ \"./front/css/login.css\");\n\r\n\r\n\r\n$(function(){\r\n    $('#joinBtn').on(\"click\",()=>{\r\n        _common__WEBPACK_IMPORTED_MODULE_0__.default.includeHTML('join');\r\n    });\r\n    var naver_login = new naver_id_login(\"qZEYV_9Dnf7uxDSIELMm\", \"http://localhost:5000/\");\r\n    var state = naver_login.getUniqState();\r\n    naver_login.setButton(\"green\", 3,40);\r\n    naver_login.setDomain(\"http://localhost:5000/\");\r\n    naver_login.setState(state);\r\n    naver_login.setPopup();\r\n    naver_login.init_naver_id_login();\r\n});\n\n//# sourceURL=webpack://startup/./front/js/login.js?");
 
 /***/ }),
 
