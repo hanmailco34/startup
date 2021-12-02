@@ -9,4 +9,5 @@ module.exports = (app) => {
 
     require('./crossword')('/crossword',app);
     require('./member')('/member',app);
+    require('./sns')('/sns',app);
 }

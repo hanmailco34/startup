@@ -58,7 +58,32 @@ const commonFunc = {
     },
     includeHTML(title) {
         this.rpcGet(rpc.hostUrl+'/html/'+title+'.html','',CBHTML,title);
-    },    
+    },
+    randomString(type,lenth) {
+        if(!type) type = 'stringNumber';
+        if(!length) length = 32;
+
+        var res,str = '';
+
+        if(type === 'string') {
+            str = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0,1);
+        }
+        else if(type === 'number') {
+            str = Math.random().toString().substr(3,1);
+        }
+        else if(type === 'stringNumber') {
+            str = Math.random().toString(36).substr(3,1);
+        }
+        else if(type === 'hex') {
+            str = Math.random().toString(16).substr(3,1);
+        }
+
+        for(var i = 0; i < lenth; i++) {
+            res += str;
+        }
+
+        return res;
+    } 
 }
 
 export default commonFunc;
