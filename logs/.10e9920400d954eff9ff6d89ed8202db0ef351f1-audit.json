@@ -24,6 +24,21 @@
             "date": 1638456333255,
             "name": "logs\\2021-12-02.log",
             "hash": "c2ac093d5c745dc47c9ae2b0bd41ca9a"
+        },
+        {
+            "date": 1638461242587,
+            "name": "logs\\2021-12-03.log",
+            "hash": "dc624f47e5bec5c2ae778f1f8a0b6a81"
+        },
+        {
+            "date": 1638800538443,
+            "name": "logs\\2021-12-06.log",
+            "hash": "401081d70fe94f1367354e7f8c51e282"
+        },
+        {
+            "date": 1638802813045,
+            "name": "logs\\2021-12-07.log",
+            "hash": "23c1ecc0d07fe2c3d289305a0585e386"
         }
     ]
 }

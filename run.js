@@ -9,7 +9,6 @@ const requestIp = require('request-ip');
 require('dotenv').config();
 
 app.listen(port,(res,err)=>{
-    console.log('home'+port);
     sequelize.connection();
 });
 

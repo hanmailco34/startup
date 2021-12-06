@@ -3,9 +3,8 @@ module.exports = (sequelize,DataTypes,Model) => {
         static joinMember(sns_id,sns_type,nickname,email) {
             return this.create({sns_id:sns_id,sns_type:sns_type,nickname:nickname,email:email});
         }
-        
     }
-
+    
     const options = {
         sequelize,
         timestamps: true,

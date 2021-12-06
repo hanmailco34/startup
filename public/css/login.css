@@ -19,4 +19,10 @@ body {
   \***********************************************************************/
 .sns_box #naver_id_login {
     background: url(/js/4382736d0fcc19a758c7.png);
+    background-size: 100% 100%;
+}
+
+.sns_box .sns_btn {
+    width: 200px;
+    height: 50px;
 }

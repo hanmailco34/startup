@@ -59,27 +59,30 @@ const commonFunc = {
     includeHTML(title) {
         this.rpcGet(rpc.hostUrl+'/html/'+title+'.html','',CBHTML,title);
     },
-    randomString(type,lenth) {
+    randomString(type,length) {
         if(!type) type = 'stringNumber';
         if(!length) length = 32;
 
-        var res,str = '';
+        var res = '';
+        var target = '';
+        const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const num = '0123456789';
 
         if(type === 'string') {
-            str = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0,1);
+            target = str;
         }
         else if(type === 'number') {
-            str = Math.random().toString().substr(3,1);
+            target = num;
         }
         else if(type === 'stringNumber') {
-            str = Math.random().toString(36).substr(3,1);
+            target = str + num;
         }
         else if(type === 'hex') {
-            str = Math.random().toString(16).substr(3,1);
+            target = num + 'abcdef';
         }
 
-        for(var i = 0; i < lenth; i++) {
-            res += str;
+        for(var i = 0; i < length; i++) {
+            res += target.charAt(Math.floor(Math.random() * target.length));
         }
 
         return res;
