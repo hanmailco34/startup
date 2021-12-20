@@ -1,6 +1,9 @@
 const {db} = require('./db/sequelize');
 const {logger} = require('./logger');
 const request = require('request');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const privatekey = fs.readFileSync('privatekey');
 
 module.exports = (path,app) => {
     app.get(path+'/cb',async (req,res)=>{
@@ -30,10 +33,17 @@ module.exports = (path,app) => {
                   const sns_name  = result.name;
                   const sns_email = result.email;
                   const sns_type  = 'naver';
-                  const db_res = await db.Member.joinMember(sns_id,sns_type,sns_name,sns_email);                  
-                  logger.info(`ip:${req.clientIp}, sns_id:${sns_id}, sns_type:${sns_type}, name:${sns_name}, email:${sns_email}`);
-                  if(db_res <= 0) return res.json({status:'OOPS',msg:'토큰 정보가 올바르지 않습니다.'});
-                  else return res.json({status:'OK',res:db_res.id});
+                  const f_member  = await db.Member.findMember(sns_id);
+                  logger.info(`ip:${req.clientIp}, f_member: ${f_member}, sns_id:${sns_id}, sns_type:${sns_type}, name:${sns_name}, email:${sns_email}`);
+                  if(f_member === null) {
+                    const db_res = await db.Member.joinMember(sns_id,sns_type,sns_name,sns_email);                                      
+                    if(db_res <= 0) return res.json({status:'OOPS',msg:'토큰 정보가 올바르지 않습니다.'});
+                    else return res.json({status:'OK',res:db_res.id});
+                  }
+                  else {
+                    setToken(f_member);
+                    return res.json({status:'OK',res:f_member.id});
+                  }                  
                 } else {
                   console.log('error');
                   if(response != null) {
@@ -48,4 +58,30 @@ module.exports = (path,app) => {
             }
         });
     })
+}
+
+function setToken(info) {
+  var iss = 'leesoobin';
+  var sub = 'hanmailco34@naver.com';
+  var aud = 'localhost';
+  var exp = '24h';
+  var signOptions = {
+    issuer : iss,
+    subject : sub,
+    audience : aud,
+    expiresIn : exp,
+    algorithm : "RS256"
+  }
+  var token = jwt.sign({id:info.id,sns_id:info.sns_id,sns_type:info.sns_type,name:info.name,email:info.email},privatekey,signOptions);
+  console.log(token);
+  var cert = fs.readFileSync('publickey');
+  var signOptions = {
+    issuer : iss,
+    subject : sub,
+    audience : aud,
+    maxAge : exp,
+    algorithms : ["RS256"]
+  }
+  var v = jwt.verify(token,cert,signOptions);
+  console.log(v)
 }
