@@ -7,7 +7,7 @@ $(function(){
         console.log(cp);
     }
     var testCBP = {
-        'test':'dd'
+        'test':'ddd'
     }
 
     common.rpcGet(rpc.crosswordSearchUrl,'',testCB,testCBP);   
