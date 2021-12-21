@@ -1,10 +1,8 @@
-const {db} = require('./db/sequelize');
-const {logger} = require('./logger');
-const request = require('request');
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const privatekey = fs.readFileSync('privatekey');
-
+const {db}        = require('./db/sequelize');
+const {logger}    = require('./logger');
+const request     = require('request');
+const {setToken}  = require('./token');
+ 
 module.exports = (path,app) => {
     app.get(path+'/cb',async (req,res)=>{
         const code = req.query.code;
@@ -41,8 +39,9 @@ module.exports = (path,app) => {
                     else return res.json({status:'OK',res:db_res.id});
                   }
                   else {
-                    setToken(f_member);
-                    return res.json({status:'OK',res:f_member.id});
+                    const _info  = {id:f_member.id, sns_id:f_member.sns_id, sns_type:f_member.sns_type, name:f_member.name, email:f_member.email};
+                    var t = setToken(_info,res);
+                    return res.redirect('/')
                   }                  
                 } else {
                   console.log('error');
@@ -60,7 +59,7 @@ module.exports = (path,app) => {
     })
 }
 
-function setToken(info) {
+/* function setToken(info) {
   var iss = 'leesoobin';
   var sub = 'hanmailco34@naver.com';
   var aud = 'localhost';
@@ -73,7 +72,7 @@ function setToken(info) {
     algorithm : "RS256"
   }
   var token = jwt.sign({id:info.id,sns_id:info.sns_id,sns_type:info.sns_type,name:info.name,email:info.email},privatekey,signOptions);
-  console.log(token);
+  
   var cert = fs.readFileSync('publickey');
   var signOptions = {
     issuer : iss,
@@ -83,5 +82,5 @@ function setToken(info) {
     algorithms : ["RS256"]
   }
   var v = jwt.verify(token,cert,signOptions);
-  console.log(v)
-}
+  
+} */
