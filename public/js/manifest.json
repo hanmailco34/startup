@@ -1,6 +1,7 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8126cab (Merge branch 'master' of github.com:hanmailco34/startup)
   "common": "/js/common.1e0d3ccd067fc7df723e.js",
@@ -10,19 +11,25 @@
 <<<<<<< HEAD
   "login": "/js/login.4ae85d174e37fd032c43.js",
 =======
+=======
+>>>>>>> 15af048 (이제 npm run build안하고 node run.js실행만하면 프론트 바뀜)
   "common": "/js/common.6a0264cb0f115a5e9324.js",
   "home": "/js/home.538e9b81d96c7e3b838e.js",
   "index": "/js/index.b1175174c0c26026bb66.js",
   "join": "/js/join.c258b19c6f39bc702408.js",
   "login": "/js/login.7c9d056875b5fd56608f.js",
+<<<<<<< HEAD
 >>>>>>> 15af048 (이제 npm run build안하고 node run.js실행만하면 프론트 바뀜)
 =======
   "login": "/js/login.cfba01ddc8f59eb3a973.js",
 >>>>>>> 8126cab (Merge branch 'master' of github.com:hanmailco34/startup)
+=======
+>>>>>>> 15af048 (이제 npm run build안하고 node run.js실행만하면 프론트 바뀜)
   "rpc": "/js/rpc.1bb2bed3525fef0de9cd.js",
   "jquery_v360": "/js/9aac3fd615c6b825afff.js",
   "loading": "/js/79c31ef68f03247cc60f.gif",
   "favicon": "/js/f2b51090dc5572827bb9.ico",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   "kakao_icon": "/js/94934c087b90964393cc.png",
@@ -39,4 +46,8 @@
   "": "/js/../html/home.html",
   "manifest": "/js/9b47ad0f9c672f26ea5e.js"
 >>>>>>> 8126cab (Merge branch 'master' of github.com:hanmailco34/startup)
+=======
+  "manifest": "/js/2c09ab0a9eda9721fba6.js",
+  "": "/js/../html/home.html"
+>>>>>>> 15af048 (이제 npm run build안하고 node run.js실행만하면 프론트 바뀜)
 }
