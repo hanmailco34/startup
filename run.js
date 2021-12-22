@@ -1,8 +1,8 @@
 const express = require('express');
 const sequelize = require('./server/db/sequelize');
 const app = express();
-const port = process.env.PORT || 5000;
-const accessRefer = ['http://localhost:5000','https://k-start-up.herokuapp.com/','http://localhost:5000/'];
+const port = process.env.PORT || 5100;
+const accessRefer = ['http://localhost:5100','https://k-start-up.herokuapp.com/','http://localhost:5100/'];
 const morgan = require('morgan');
 const {logger,stream} = require('./server/logger');
 const requestIp = require('request-ip');
