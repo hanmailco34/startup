@@ -2,15 +2,15 @@ import common from './common';
 import rpc from './rpc';
 
 $(function(){
-    var testCB = (data,cp) => {
-        console.log(data);
-        console.log(cp);
-    }
-    var testCBP = {
-        'test':'ddd'
+    var tokenCheck = (res) => {
+        if(res.status === 'OK') {
+            sessionStorage.setItem('name',res.data.name);
+            common.includeHTML('home');
+        }
+        else {
+            common.includeHTML('login');
+        }
     }
 
-    common.rpcGet(rpc.crosswordSearchUrl,'',testCB,testCBP);   
-    
-    common.includeHTML('login');
+    common.rpcPost(rpc.checkUrl,'',tokenCheck);
 })

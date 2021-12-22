@@ -56,6 +56,13 @@ const commonFunc = {
         .fail(rpcFail)
         .always(hideLoading)
     },
+    rpcPost(url,param,CBF,CBP) {
+        showLoading();
+        $.post(url,param)
+        .done((res)=>CBF(res,CBP))
+        .fail(rpcFail)
+        .always(hideLoading)
+    },
     includeHTML(title) {
         this.rpcGet(rpc.hostUrl+'/html/'+title+'.html','',CBHTML,title);
     },
@@ -86,7 +93,7 @@ const commonFunc = {
         }
 
         return res;
-    } 
+    },
 }
 
 export default commonFunc;

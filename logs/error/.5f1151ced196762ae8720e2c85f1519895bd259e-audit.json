@@ -49,6 +49,11 @@
             "date": 1640012423193,
             "name": "logs\\error\\2021-12-21.error.log",
             "hash": "d08d52bed3b2a8e6e477d124d3f43bfa"
+        },
+        {
+            "date": 1640160936464,
+            "name": "logs\\error\\2021-12-22.error.log",
+            "hash": "15be66f00dd0f3c7dd3f8876b97eadb2"
         }
     ]
 }

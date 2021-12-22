@@ -1,0 +1,20 @@
+/*!************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./front/css/common.css ***!
+  \************************************************************************/
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#loading {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/js/79c31ef68f03247cc60f.gif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: none;
+}
+/*!**********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./front/css/home.css ***!
+  \**********************************************************************/
+
