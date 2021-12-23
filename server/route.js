@@ -1,8 +1,9 @@
 const path = require('path');
-const htmlPath = path.join(__dirname,'..','public','html');
 const { check } = require('./token');
 
-module.exports = (app) => {    
+module.exports = (app,environment) => {    
+    const htmlPath = path.join(__dirname,'..',`${environment}`,'html');
+
     app.get('/',(req,res)=>{
         const indexHtmlPath = path.join(htmlPath,'index.html');
         res.sendFile(indexHtmlPath);
