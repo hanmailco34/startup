@@ -3,12 +3,15 @@
   "home": "/js/home.3572717651f71968b4c6.js",
   "index": "/js/index.70b42ccc6b411f8a16e8.js",
   "join": "/js/join.f0583997598d68eb5100.js",
-  "login": "/js/login.cfba01ddc8f59eb3a973.js",
+  "login": "/js/login.4ae85d174e37fd032c43.js",
   "rpc": "/js/rpc.1bb2bed3525fef0de9cd.js",
   "jquery_v360": "/js/9aac3fd615c6b825afff.js",
   "loading": "/js/79c31ef68f03247cc60f.gif",
-  "btnG_완성형": "/js/4382736d0fcc19a758c7.png",
   "favicon": "/js/f2b51090dc5572827bb9.ico",
+  "kakao_icon": "/js/94934c087b90964393cc.png",
+  "facebook_icon": "/js/341803a18592f4d966a6.png",
+  "naver_icon": "/js/b3637397af0bf1febfdf.png",
+  "google_icon": "/js/f134f0ef84a40ab4ae0d.png",
   "": "/js/../html/home.html",
   "manifest": "/js/9b47ad0f9c672f26ea5e.js"
 }
