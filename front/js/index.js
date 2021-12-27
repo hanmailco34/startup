@@ -1,5 +1,5 @@
-import common from './common.js';
-import rpc from './rpc.js';
+import common from './common';
+import rpc from './rpc';
 
 $(function(){
     var tokenCheck = (res) => {

@@ -9,7 +9,6 @@ const requestIp = require('request-ip');
 const cookieParser = require('cookie-parser');
 const {getToken} = require('./server/token');
 require('dotenv').config();
-const environment = (process.env.NODE_ENV === 'development') ? 'front' : 'public';
 
 app.listen(port,(res,err)=>{
     sequelize.connection();
@@ -17,10 +16,10 @@ app.listen(port,(res,err)=>{
 
 app.use(cookieParser());
 app.use(express.json());
-app.use('/img',express.static(`./${environment}/img`));
-app.use('/util',express.static(`./${environment}/util`));
-app.use('/css',express.static(`./${environment}/css`));
-app.use('/js',express.static(`./${environment}/js`));
+app.use('/img',express.static('./public/img'));
+app.use('/util',express.static(`./public/util`));
+app.use('/css',express.static(`./public/css`));
+app.use('/js',express.static(`./public/js`));
 app.use(morgan('HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms',{stream}));
 app.use(requestIp.mw());
 
@@ -36,6 +35,6 @@ app.use((req,res,next) => {
     getToken(req,res,next); 
 })
 
-app.use('/html',express.static(`./${environment}/html`));
+app.use('/html',express.static(`./public/html`));
 
-const router = require('./server/route.js')(app,environment);
+const router = require('./server/route.js')(app);

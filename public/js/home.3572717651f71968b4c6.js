@@ -16,7 +16,7 @@
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_home_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/home.css */ \"./front/css/home.css\");\n\r\n\n\n//# sourceURL=webpack://startup/./front/js/home.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_home_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/home.css */ \"./front/css/home.css\");\n\n\n//# sourceURL=webpack://startup/./front/js/home.js?");
 
 /***/ }),
 
