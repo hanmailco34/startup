@@ -1,4 +1,4 @@
-import rpc from './rpc.js';
+import rpc from './rpc';
 
 function clearHead(head) {
     var cmd = false;
@@ -17,9 +17,7 @@ function clearHead(head) {
 
 function includeJS(head,title) {
     const sc = document.createElement('script');
-    if(environment === 'develope') sc.src = `js/${title}.js`;
-    else sc.src = `${manifestObj[title]}`;    
-    sc.type = 'module';
+    sc.src = `${manifestObj[title]}`;
     head.appendChild(sc);
 }
 
