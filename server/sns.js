@@ -21,11 +21,10 @@ module.exports = (path,app) => {
 function naverLogin(req, res) {
   const code = req.query.code;
   const state = req.query.state;
-  logger.info(`ip:${req.clientIp}, code:${code}, state:${state}`);
-  var redirectURI = encodeURI(req.protocol + '//' + req.headers.host + req.url.split('?')[0]);
+  const redirectURI = encodeURI(req.protocol + '//' + req.headers.host + req.url.split('?')[0]);
   const api_url = 'https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id='
   + process.env.NAVER_CLIENT_ID + '&client_secret=' + process.env.NAVER_CLIENT_SECRET + '&redirect_uri=' + redirectURI + '&code=' + code + '&state=' + state;
-  var options = {
+  const options = {
       url: api_url,
       headers: {'X-Naver-Client-Id':process.env.NAVER_CLIENT_ID, 'X-Naver-Client-Secret': process.env.NAVER_CLIENT_SECRET}
   };
@@ -41,7 +40,14 @@ function naverLogin(req, res) {
       }
       request.get(token_options, async function (error2, response2, body2) {
         if (!error2 && response2.statusCode == 200) {
-          getInfo(req, res, body2, 'naver');                          
+          const result  = JSON.parse(body2).response;
+          const param   = {
+            id    : result.id,
+            name  : result.name,
+            email : result.email,
+            type  : 'naver'
+          } 
+          getInfo(req, res, param);                          
         } else {
           console.log('error');
           if(response2 != null) {
@@ -58,48 +64,41 @@ function naverLogin(req, res) {
 }
 
 async function gogoleLogin(req, res) {
-  //const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-  const oAuth2Client = await getAuthenticatedClient(req);
-}
-
-function getAuthenticatedClient(req) {
-  return new Promise((resolve, reject) => {
-    // create an oAuth client to authorize the API call.  Secrets are kept in a `keys.json` file,
-    // which should be downloaded from the Google Developers Console.
-    const oAuth2Client = new OAuth2Client(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
-      "http://localhost:5100/sns/cb?type=google"
-    );
-
-    // Generate the url that will be used for the consent dialog.
-    const authorizeUrl = oAuth2Client.generateAuthUrl({
-      access_type: 'offline',
-      scope: 'https://www.googleapis.com/auth/userinfo.profile',
+  const client  = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+  const token   = req.query.token;
+  
+  async function verify() {
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.GOOGLE_CLIENT_ID,
     });
+    return ticket.getPayload();
 
-    const code = req.query.code;
-    console.log(code);
+  }
 
-  });
+  const info  = await verify().catch(console.error);
+  const param = {
+    id    : info.sub,
+    name  : info.name,
+    email : info.email,
+    type  : 'google'
+  }
+  getInfo(req, res, param)
 }
 
-async function getInfo(req, res, body, type) {
-  const result    = JSON.parse(body).response;
-  const sns_id    = result.id;
-  const sns_name  = result.name;
-  const sns_email = result.email;
-  const sns_type  = type;
+async function getInfo(req, res, param) {
+  const sns_id    = param.id;
+  const sns_name  = param.name;
+  const sns_email = param.email;
+  const sns_type  = param.type;
   const f_member  = await db.Member.findMember(sns_id);
   logger.info(`ip:${req.clientIp}, f_member: ${f_member}, sns_id:${sns_id}, sns_type:${sns_type}, name:${sns_name}, email:${sns_email}`);
   if(f_member === null) {
     const db_res = await db.Member.joinMember(sns_id,sns_type,sns_name,sns_email);                                      
     if(db_res <= 0) return res.json({status:'OOPS',msg:'토큰 정보가 올바르지 않습니다.'});
-    else return res.json({status:'OK',res:db_res.id});
   }
-  else {
-    const _info  = {id:f_member.id, sns_id:f_member.sns_id, sns_type:f_member.sns_type, name:f_member.nickname, email:f_member.email};
-    var t = setToken(_info,res);
-    return res.redirect('/');
-  }  
+
+  const _info  = {id:f_member.id, sns_id:f_member.sns_id, sns_type:f_member.sns_type, name:f_member.nickname, email:f_member.email};
+  var t = setToken(_info,res);
+  return res.redirect('/');
 }

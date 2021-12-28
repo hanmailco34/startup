@@ -22,7 +22,7 @@ $(function(){
             });
 
             gogole_auth.signIn().then(result => {
-                console.log(result);
+                location.href = google_redirectURI+'&token='+result.getAuthResponse().id_token;
             });
         });
     });
