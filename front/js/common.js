@@ -96,6 +96,18 @@ const commonFunc = {
 
         return res;
     },
+    alert(obj,content,icon) {
+        $('#alert_container').addClass('show');
+        if(typeof obj === 'string') {
+            $('#alert_title').html(obj);
+        }
+        else if(typeof obj === 'object') {
+
+        }
+        $('#alert_confirm').click(function() {
+            $('#alert_container').removeClass('show');
+        });
+    }
 }
 
 export default commonFunc;
