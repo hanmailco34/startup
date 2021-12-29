@@ -12,6 +12,8 @@ body {
     display: none;
 }
 
+/* alert css */
+
 .alert_container {
     position: fixed;
     z-index: 1060;
@@ -21,12 +23,11 @@ body {
     left: 0;
     background: rgba(0,0,0,.4);
     height: 100%;
-    display: none;
+    place-content: center;
 }
 
-.alert_container.show {
-    display: grid;
-    place-content: center;
+.show {
+    display: grid !important;
 }
 
 .alert_container .alert_box {
@@ -58,6 +59,18 @@ body {
     word-wrap: break-word;
 }
 
+.alert_box .alert_content {
+    justify-content: center;
+    margin: 1em 1.6em 0.3em;
+    padding: 0;
+    overflow: auto;
+    color: inherit;
+    font-size: 1.125em;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
 .alert_box .alert_btn_box {
     display: flex;
     z-index: 1;
@@ -86,6 +99,102 @@ body {
     font-weight: 500;
 }
 
+.alert_box .alert_icon {
+    display: flex;
+    position: relative;
+    width: 5em;
+    height: 5em;
+    margin: 2.5em auto 0.6em;
+    border: 0.25em solid transparent;
+    border-radius: 50%;
+    font-family: inherit;
+    animation: alert-icon .5s;
+    display: flex;
+}
+
+.alert_box .alert_icon.success {
+    border-color: #a5dc86;
+    color: #a5dc86;
+}
+
+.alert_box .alert_icon.error {
+    border-color: #f27474;
+    color: #f27474;
+}
+
+.alert_box .alert_icon.info {
+    border-color: #9de0f6;
+    color: #3fc3ee;
+}
+
+.alert_box .alert_icon.question {
+    border-color: #c9dae1;
+    color: #87adbd;
+}
+
+.alert_box .alert_icon.warning .warning_icon,
+.alert_box .alert_icon.info .info_icon,
+.alert_box .alert_icon.question .question_icon
+ {
+    font-size: 3.75em;
+    display: flex;
+    justify-self: center;
+    animation: alert-icon-mark .5s;
+}
+.alert_box .alert_icon.success .alert_success,
+.alert_box .alert_icon.error .alert_error {
+    position: relative;
+    flex-grow: 1;
+    animation: alert-icon-cross .5s;
+}
+
+.alert_box .alert_icon.success .alert_success .success_v {
+    position: absolute;
+    left: 1.6em;
+    height: 0.3125em;
+    border-radius: 0.125em;
+    background-color: #a5dc86;
+}
+
+.alert_box .alert_icon.success .alert_success .success_v_left {
+    top: 2.875em;
+    left: 0.8125em;
+    width: 1.5625em;
+    transform: rotate(45deg);
+}
+
+.alert_box .alert_icon.success .alert_success .success_v_right {
+    top: 2.375em;
+    right: 0.5em;
+    width: 2.9375em;
+    transform: rotate(-45deg);
+}
+
+.alert_box .alert_icon.error .alert_error .error_x {
+    position: absolute;
+    top: 2.3125em;
+    width: 2.9375em;
+    height: 0.3125em;
+    border-radius: 0.125em;
+    background-color: #f27474;
+}
+
+.alert_box .alert_icon.error .alert_error .error_x_left {
+    left: 1em;
+    transform: rotate(45deg);
+}
+
+.alert_box .alert_icon.error .alert_error .error_x_right {
+    left: 1em;
+    transform: rotate(-45deg);
+}
+
+.alert_box .alert_icon.warning {
+    border-color: #facea8;
+    color: #f8bb86;
+    
+}
+
 @keyframes alert-show {
     0% {
         transform: scale(.7);
@@ -98,5 +207,61 @@ body {
     }
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes alert-icon {
+    0% {
+        transform: rotateX(100deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes alert-icon-cross {
+    0% {
+        margin-top: 1.625em;
+        transform: scale(.4);
+        opacity: 0;
+    }
+    50% {
+        margin-top: 1.625em;
+        transform: scale(.4);
+        opacity: 0;
+    }
+    80% {
+        margin-top: -0.375em;
+        transform: scale(1.15);
+    }
+    100% {
+        margin-top: 0;
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes alert-icon-mark {
+    0% {
+        transform: rotateZ(45deg);
+        opacity: 0;
+    }
+    25% {
+        transform: rotateZ(-25deg);
+        opacity: .4;
+    }
+    50% {
+        transform: rotateZ(15deg);
+        opacity: .8;
+    }
+    75% {
+        transform: rotateZ(-5deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateX(0);
+        opacity: 1;
     }
 }

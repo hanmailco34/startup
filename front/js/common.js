@@ -50,6 +50,38 @@ function hideLoading() {
     $("#loading").hide();
 }
 
+function showAlert(obj) {
+    $('#alert_container').addClass('show');
+
+    for(const [k,v] of Object.entries(obj)) {
+        if(v) {
+            $(`#alert_${k}`).addClass('show');
+            if(k === 'icon') {
+                $('#alert_icon').addClass(v);
+                $(`#alert_${v}`).addClass('show');       
+            }
+        }
+    }
+
+    if(obj.shoConfirmButton !== false) $('#alert_confirm').addClass('show');
+}
+
+function hideAlert(obj) {
+    $('#alert_container').removeClass('show');
+
+    for(const [k,v] of Object.entries(obj)) {
+        if(v) {
+            $(`#alert_${k}`).removeClass('show');
+            if(k === 'icon') {
+                $('#alert_icon').removeClass(v);
+                $(`#alert_${v}`).removeClass('show');       
+            }
+        }
+    }
+
+    if(obj.shoConfirmButton !== false) $('#alert_confirm').removeClass('show');
+}
+
 const commonFunc = {
     rpcGet(url,param,CBF,CBP) {
         showLoading();
@@ -96,16 +128,22 @@ const commonFunc = {
 
         return res;
     },
-    alert(obj,content,icon) {
-        $('#alert_container').addClass('show');
-        if(typeof obj === 'string') {
-            $('#alert_title').html(obj);
-        }
-        else if(typeof obj === 'object') {
+    alert(title,content,icon) {
+        const obj = {};
 
-        }
+        if(typeof title === 'string') {
+            obj['title'] = title;
+            obj['content'] = content;
+            obj['icon'] = icon;            
+        }        
+
+        $('#alert_title').html(obj.title);
+        $('#alert_content').html(obj.content);
+
+        showAlert(obj);
+
         $('#alert_confirm').click(function() {
-            $('#alert_container').removeClass('show');
+            hideAlert(obj);
         });
     }
 }

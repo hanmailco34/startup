@@ -4,7 +4,7 @@ import common from './common.js';
 $(function() {
 
     $('#button').click(function() {
-        common.alert('하이');
+        common.alert('하이','안녕','success');
     });
 });
 
