@@ -4,7 +4,19 @@ import common from './common.js';
 $(function() {
 
     $('#button').click(function() {
-        common.alert('하이','안녕','success');
+      const alert = {
+        title:'사라져라',
+        confirm: false,
+        time: 1500
+      }
+      common.alert(alert);
+    });
+
+    $('#button2').click(function() {
+      const alert = {
+        image: 'test.jpg'
+      }
+      common.alert(alert);
     });
 });
 

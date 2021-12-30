@@ -63,10 +63,10 @@ function showAlert(obj) {
         }
     }
 
-    if(obj.shoConfirmButton !== false) $('#alert_confirm').addClass('show');
+    if(obj.confirm !== false) $('#alert_confirm').addClass('show');
 }
 
-function hideAlert(obj) {
+function hideAlert(_id, obj) {
     $('#alert_container').removeClass('show');
 
     for(const [k,v] of Object.entries(obj)) {
@@ -79,7 +79,15 @@ function hideAlert(obj) {
         }
     }
 
-    if(obj.shoConfirmButton !== false) $('#alert_confirm').removeClass('show');
+    if(obj.confirm !== false) $('#alert_confirm').removeClass('show');
+
+    if(_id === 'alert_confirm' && typeof obj.isConfirmed === 'function') {
+        obj.isConfirmed();
+    }
+
+    if(_id === 'alert_deny' && typeof obj.isDenied === 'function') {
+        obj.isDenied();
+    }
 }
 
 const commonFunc = {
@@ -135,15 +143,51 @@ const commonFunc = {
             obj['title'] = title;
             obj['content'] = content;
             obj['icon'] = icon;            
+        }
+        else {
+            Object.assign(obj, title);
         }        
 
         $('#alert_title').html(obj.title);
         $('#alert_content').html(obj.content);
+        $('#alert_footer').html(obj.footer);
+        $('#alert_confirm').html('OK');
+        $('#alert_deny').html('NO');
+        $('#alert_cancel').html('CANCEL');
+
+        if(obj.confirmText) {
+            $('#alert_confirm').html(obj.confirmText);
+        }
+
+        if(obj.denyText) {
+            $('#alert_deny').html(obj.denyText);
+        }
+
+        if(obj.cancelText) {
+            $('#alert_cancel').html(obj.cancelText);
+        }
+
+        if(obj.image) {
+            $('#alert_image').css('width','');
+            $('#alert_image').css('height','');
+            $('#alert_image').attr('src','img/'+obj.image);
+            if(obj.imageWidth) $('#alert_image').css('width',obj.imageWidth);
+            if(obj.imageHeight) $('#alert_image').css('width',obj.imageHeight);
+        }
 
         showAlert(obj);
 
-        $('#alert_confirm').click(function() {
-            hideAlert(obj);
+        $("[name='alert_btn']").off().on('click', function() {
+            console.log(this);
+            hideAlert(this.id, obj);
+        });
+
+        if(obj.time) {
+            setTimeout(() => hideAlert('time', obj),obj.time);
+        }
+
+        $('#alert_container').off().on('click', function(e) {
+            if(e.target.id === 'alert_container') hideAlert('container', obj);
         });
     }
 }

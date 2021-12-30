@@ -83,12 +83,10 @@ body {
     padding: 0;
 }
 
-.alert_box .alert_btn_box .alert_btn_confirm {
+.alert_box .alert_btn_box .alert_btn {
     border: 0;
     border-radius: 0.25em;
-    background: initial;
-    background-color: #7066e0;
-    color: #fff;
+    background: initial;    
     font-size: 1em;
     display: inline-block;
     cursor: pointer;
@@ -99,8 +97,22 @@ body {
     font-weight: 500;
 }
 
+.alert_box .alert_btn_box .alert_btn_confirm {    
+    background-color: #7066e0;
+    color: #fff;
+}
+
+.alert_box .alert_btn_box .alert_btn_deny {
+    background-color: #dc3741;
+    color: #fff;
+}
+
+.alert_box .alert_btn_box .alert_btn_cancel {
+    background-color: #6e7881;
+    color: #fff;
+}
+
 .alert_box .alert_icon {
-    display: flex;
     position: relative;
     width: 5em;
     height: 5em;
@@ -109,7 +121,6 @@ body {
     border-radius: 50%;
     font-family: inherit;
     animation: alert-icon .5s;
-    display: flex;
 }
 
 .alert_box .alert_icon.success {
@@ -191,8 +202,35 @@ body {
 
 .alert_box .alert_icon.warning {
     border-color: #facea8;
-    color: #f8bb86;
-    
+    color: #f8bb86;   
+}
+
+.alert_box .alert_footer {
+    margin: 1em 0 0;
+    padding: 1em 1em 0;
+    border-top: 1px solid #eee;
+    color: inherit;
+    font-size: 1em;
+    text-align: center;
+}
+
+.alert_box .alert_image {
+    max-width: 100%;
+    margin: 2em auto 1em;
+}
+
+.alert_box .alert_close {
+    z-index: 2;
+    width: 1.2em;    
+    margin-bottom: -1.2em;    
+    color: #ccc;
+    font-size: 2em;
+    cursor: pointer;
+    justify-self: end;
+}
+
+.alert_box .alert_close:hover {
+    color: #f27474;
 }
 
 @keyframes alert-show {

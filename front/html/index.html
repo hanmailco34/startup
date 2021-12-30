@@ -15,6 +15,7 @@
         <div id="loading"></div>
         <div class="alert_container" id="alert_container" style="display: none;">
             <div class="alert_box" id="alert_box">
+                <div class="alert_close" id="alert_close" name="alert_btn" style="display: none;">X</div>
                 <div class="alert_icon" id="alert_icon" style="display: none;">
                     <div class="alert_success" id="alert_success" style="display: none;">
                         <div class="success_v success_v_left"></div>
@@ -34,10 +35,16 @@
                         <div class="question_icon">?</div>
                     </div>
                 </div>
+                <img class="alert_image" id="alert_image" style="display: none;">
                 <div class="alert_title" id="alert_title" style="display: none;"></div>
                 <div class="alert_content" id="alert_content" style="display: none;"></div>
                 <div class="alert_btn_box">
-                    <button type="button" class="alert_btn_confirm" id="alert_confirm" style="display: none;">OK</button>
+                    <button type="button" class="alert_btn alert_btn_confirm" id="alert_confirm" name="alert_btn" style="display: none;"></button>
+                    <button type="button" class="alert_btn alert_btn_deny" id="alert_deny" name="alert_btn" style="display: none;"></button>
+                    <button type="button" class="alert_btn alert_btn_cancel" id="alert_cancel" name="alert_btn" style="display: none;"></button>
+                </div>
+                <div class="alert_footer" id="alert_footer" style="display: none;">
+
                 </div>
             </div>
         </div>        
