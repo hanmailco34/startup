@@ -137,6 +137,7 @@ const commonFunc = {
         return res;
     },
     alert(title,content,icon) {
+        
         const obj = {};
 
         if(typeof title === 'string') {
@@ -170,7 +171,7 @@ const commonFunc = {
         if(obj.image) {
             $('#alert_image').css('width','');
             $('#alert_image').css('height','');
-            $('#alert_image').attr('src','img/'+obj.image);
+            $('#alert_image').attr('src',obj.image);
             if(obj.imageWidth) $('#alert_image').css('width',obj.imageWidth);
             if(obj.imageHeight) $('#alert_image').css('width',obj.imageHeight);
         }
@@ -178,7 +179,6 @@ const commonFunc = {
         showAlert(obj);
 
         $("[name='alert_btn']").off().on('click', function() {
-            console.log(this);
             hideAlert(this.id, obj);
         });
 
@@ -188,7 +188,7 @@ const commonFunc = {
 
         $('#alert_container').off().on('click', function(e) {
             if(e.target.id === 'alert_container') hideAlert('container', obj);
-        });
+        });        
     }
 }
 
