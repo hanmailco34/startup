@@ -17,7 +17,7 @@ exports.setToken = function(info,res) {
         algorithm   : "RS256"
     }
     try {
-        const token = jwt.sign({id:info.id,sns_id:info.sns_id,sns_type:info.sns_type,name:info.name,email:info.email},privatekey,signOptions);
+        const token = jwt.sign({id:info.id,sns_id:info.sns_id,sns_type:info.sns_type,name:info.name,email:info.email,point:info.point},privatekey,signOptions);
         res.cookie("access_token", token, {
             httpOnly: true,
             maxAge: 60 * 60 * 60 * 1000
@@ -64,7 +64,7 @@ exports.check = (path, app) => {
         logger.info(`ip:${req.clientIp}, token:${token}`);
         try {
             const verify = jwt.verify(token,publickey,signOptions);
-            return res.json({status:'OK',data:{name:verify.name}});
+            return res.json({status:'OK',data:{name:verify.name, point:verify.point}});
         }
         catch {
             return res.json({status:'OOPS',msg:'잘못된 토큰입니다.'});

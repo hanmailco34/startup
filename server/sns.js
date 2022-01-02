@@ -25,13 +25,12 @@ module.exports = (path,app) => {
 }
 
 function kakaoLogin(req, res){
-  const redirectURI = encodeURI(req.protocol + '//' + req.headers.host + req.url.split('?')[0]);
-  console.log('코드 값은---->'+req.query.code)
+  const redirectURI = encodeURI(req.protocol + '://' + req.headers.host + req.url.split('?')[0] + '?type=kakao');
   const api_url = 'https://kauth.kakao.com/oauth/token';
   const options = {
     url : api_url,
     headers : {'Content-Type':'application/x-www-form-urlencoded;charset=utf-8'},
-    data : qs.stringify({
+    body : qs.stringify({
       grant_type : 'authorization_code',
       client_id : process.env.KAKAO_CLINET_ID,
       redirect_uri : redirectURI,
@@ -51,7 +50,7 @@ function kakaoLogin(req, res){
 function naverLogin(req, res) {
   const code = req.query.code;
   const state = req.query.state;
-  const redirectURI = encodeURI(req.protocol + '//' + req.headers.host + req.url.split('?')[0]);
+  const redirectURI = encodeURI(req.protocol + '://' + req.headers.host + req.url.split('?')[0]);
   const api_url = 'https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id='
   + process.env.NAVER_CLIENT_ID + '&client_secret=' + process.env.NAVER_CLIENT_SECRET + '&redirect_uri=' + redirectURI + '&code=' + code + '&state=' + state;
   const options = {
@@ -128,7 +127,7 @@ async function getInfo(req, res, param) {
     if(db_res <= 0) return res.json({status:'OOPS',msg:'토큰 정보가 올바르지 않습니다.'});
   }
 
-  const _info  = {id:f_member.id, sns_id:f_member.sns_id, sns_type:f_member.sns_type, name:f_member.nickname, email:f_member.email};
+  const _info  = {id:f_member.id, sns_id:f_member.sns_id, sns_type:f_member.sns_type, name:f_member.nickname, email:f_member.email, point:f_member.point};
   var t = setToken(_info,res);
   return res.redirect('/');
 }
