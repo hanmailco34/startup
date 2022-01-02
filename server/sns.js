@@ -2,7 +2,10 @@ const {db}        = require('./db/sequelize');
 const {logger}    = require('./logger');
 const request     = require('request');
 const {setToken}  = require('./token');
+const qs          = require('qs');
 const {OAuth2Client} = require('google-auth-library');
+const { util } = require('webpack');
+const { post } = require('request');
  
 module.exports = (path,app) => {
   app.get(path+'/cb',async (req, res) => {
@@ -14,9 +17,36 @@ module.exports = (path,app) => {
       case 'google':
         gogoleLogin(req, res);
         break;
+      case 'kakao':
+        kakaoLogin(req, res);
+        break;
     }
   })
 }
+
+function kakaoLogin(req, res){
+  const redirectURI = encodeURI(req.protocol + '//' + req.headers.host + req.url.split('?')[0]);
+  console.log('코드 값은---->'+req.query.code)
+  const api_url = 'https://kauth.kakao.com/oauth/token';
+  const options = {
+    url : api_url,
+    headers : {'Content-Type':'application/x-www-form-urlencoded;charset=utf-8'},
+    data : qs.stringify({
+      grant_type : 'authorization_code',
+      client_id : process.env.KAKAO_CLINET_ID,
+      redirect_uri : redirectURI,
+      client_secret : process.env.KAKAO_CLINET_SECRET,
+      code : req.query.code
+    })
+  }
+  console.log('options===>'+JSON.stringify(options));
+  request.post(options, function(error, response, body){
+    console.log('error------->'+error);
+    console.log('response------->'+JSON.stringify(response));
+    console.log('body------->'+body);
+  })
+}
+
 
 function naverLogin(req, res) {
   const code = req.query.code;
