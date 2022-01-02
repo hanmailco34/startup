@@ -1,13 +1,12 @@
 @import 'common.css';
 
 .login-container{
-    width: 100vh;
-    height: 100vh;
-    top:50%;
-    left:50%;
+    display: flex;
 }
 
 .loginwrap{
+    margin: 0% auto;
+    align-items: center;
     width: 430px;
     height: 300px;
     position: relative;
