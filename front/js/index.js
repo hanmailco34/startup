@@ -14,7 +14,14 @@ $(function(){
                 tag     : 'header'
             };
             common.includeHTML(includeOption);
-            common.includeHTML('home');
+            var data = common.session('location','get');
+            if(data.location) {
+                common.session('location','delete');
+                common.includeHTML(location);
+            }
+            else {
+                common.includeHTML('home');
+            }            
         }
         else {
             common.includeHTML('login');

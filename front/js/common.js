@@ -1,4 +1,5 @@
 import rpc from './rpc.js';
+import global from './global.js';
 
 function clearHead(head) {
     var cmd = false;
@@ -32,17 +33,21 @@ function includeCSS(head,title) {
 
 function CBHTML(res,param) {
     var tag, container, title = '';
+    
     if(typeof param === 'string') {
         tag       = $('head')[0];
         container = 'app';
         title     = param;
+        global.title = title;
+        backShowHeader(title);
         clearHead(tag);
     }
     else {
         tag       = $(param.tag)[0];
         container = param.tag;
         title     = param.title;
-    }    
+    }
+    
     includeJS(tag,title);
     includeCSS(tag,title);
     $(`#${container}`).html(res);
@@ -98,6 +103,11 @@ function hideAlert(_id, obj) {
     if(_id === 'alert_deny' && typeof obj.isDenied === 'function') {
         obj.isDenied();
     }
+}
+
+function backShowHeader(title) {
+    if(title === 'home') $('#header_back').hide();
+    else $('#header_back').show();
 }
 
 const commonFunc = {

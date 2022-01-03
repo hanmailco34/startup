@@ -1,8 +1,6 @@
 import '../css/missing.css' assert { type: "css" };
 import common from './common.js';
 
-var map;
-
 $(function() {
   function getLocation() {
     if (navigator.geolocation) { // GPS를 지원하면
@@ -13,7 +11,7 @@ $(function() {
             level: 3 //지도의 레벨(확대, 축소 정도)
         };
 
-        map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
         var mapTypeControl = new kakao.maps.MapTypeControl();
         map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
@@ -21,15 +19,7 @@ $(function() {
         var zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-        var markerPosition  = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude); 
-
-        var marker = new kakao.maps.Marker({
-          position: markerPosition
-        });
-
-        //marker.setMap(map);
-
-        
+        var markerPosition  = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);         
 
         var clickMaker = new kakao.maps.Marker({
           position: markerPosition
