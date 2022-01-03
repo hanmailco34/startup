@@ -15,8 +15,6 @@ $(function(){
             };
             common.includeHTML(includeOption);
             common.includeHTML('home');
-            
-            console.log(common.session(['name','point'],'get'));
         }
         else {
             common.includeHTML('login');

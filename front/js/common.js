@@ -237,6 +237,14 @@ const commonFunc = {
             }
             return obj;
         }
+    },
+    numberFormat(num) {
+        if(typeof num === 'number') {
+            return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,",");
+        }
+        else if(typeof num === 'string') {
+            return parseFloat(num.replace(/,/g,""));
+        }
     }
 }
 
