@@ -1,0 +1,7 @@
+.disapper_container .row_box {
+    display: flex;
+}
+
+.row_box .radio {
+    display: flex;
+}

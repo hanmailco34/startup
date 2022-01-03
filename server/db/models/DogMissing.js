@@ -1,6 +1,6 @@
 module.exports = (sequelize,DataTypes,Model) => {
     class DogMissing extends Model {
-
+        
     }
     
     const options = {
@@ -45,6 +45,9 @@ module.exports = (sequelize,DataTypes,Model) => {
         dogSearch: {
             type: DataTypes.STRING,
             defaultValue: 'N'
+        },
+        mbId: {
+            type: DataTypes.INTEGER
         }
     },options);
 

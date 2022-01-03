@@ -112,6 +112,7 @@ function backShowHeader(title) {
 
 const commonFunc = {
     rpcCall(option) {
+        const token = this.getCookie('access_token');
         var param = {
             url     : option.url
         }
@@ -264,6 +265,14 @@ const commonFunc = {
         else if(typeof num === 'string') {
             return parseFloat(num.replace(/,/g,""));
         }
+    },
+    getCookie(key) {
+        var cookie = document.cookie.split(';');
+        for(var i = 0; i < cookie.length; i++) {
+            var item = cookie[i].split('=');
+            if(key === item[0]) return item[1];
+        }
+        return null;
     }
 }
 

@@ -19,7 +19,6 @@ exports.setToken = function(info,res) {
     try {
         const token = jwt.sign({id:info.id,sns_id:info.sns_id,sns_type:info.sns_type,name:info.name,email:info.email,point:info.point},privatekey,signOptions);
         res.cookie("access_token", token, {
-            httpOnly: true,
             maxAge: 60 * 60 * 60 * 1000
         });
         return 1;
@@ -70,4 +69,20 @@ exports.check = (path, app) => {
             return res.json({status:'OOPS',msg:'잘못된 토큰입니다.'});
         }
     })
+}
+
+exports.getLoginInfo = (path, app) => {
+    app.post(path + '/check', (req) => {
+        const token = req.cookies.access_token;
+        const signOptions = {
+            issuer : iss,
+            subject : sub,
+            audience : aud,
+            maxAge : exp,
+            algorithms : ["RS256"]
+        }
+
+        const verify = jwt.verify(token,publickey,signOptions);
+        console.log(verify);            
+    });
 }

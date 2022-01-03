@@ -1,0 +1,23 @@
+.radio_box {
+    display: flex;
+}
+
+.radio_box .radio_circle {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 50%;
+    background-color: grey;
+    position: relative;
+}
+
+.radio_box .radio_sub_circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

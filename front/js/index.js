@@ -20,7 +20,7 @@ $(function(){
                 common.includeHTML(data.history);
             }
             else {
-                common.includeHTML('home');
+                common.includeHTML('disappearance');
             }            
         }
         else {
