@@ -1,5 +1,6 @@
 import '../css/missing.css' assert { type: "css" };
 import common from './common.js';
+import global from './global.js';
 
 $(function() {
   function getLocation() {
@@ -52,7 +53,8 @@ $(function() {
           clickMaker.setVisible(true);
           infowindow.open(map, clickMaker);
           $('#disappearance').off().on('click', function() {
-            alert(1);
+            global.latlng = latlng;
+            common.includeHTML('disappearance');
           });
           $('#ifClose').off().on('click', function() {
             clickMaker.setVisible(false);

@@ -14,10 +14,10 @@ $(function(){
                 tag     : 'header'
             };
             common.includeHTML(includeOption);
-            var data = common.session('location','get');
-            if(data.location) {
-                common.session('location','delete');
-                common.includeHTML(location);
+            var data = common.session('history','get');
+            if(data.history) {
+                common.session('history','delete');
+                common.includeHTML(data.history);
             }
             else {
                 common.includeHTML('home');
@@ -27,6 +27,10 @@ $(function(){
             common.includeHTML('login');
         }
     }
-
-    common.rpcPost(rpc.checkUrl,'',tokenCheck);
+    
+    var rpcOption = {
+        url : rpc.checkUrl,
+        CBF : tokenCheck
+    }
+    common.rpcCall(rpcOption);
 })

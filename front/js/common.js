@@ -35,10 +35,10 @@ function CBHTML(res,param) {
     var tag, container, title = '';
     
     if(typeof param === 'string') {
-        tag       = $('head')[0];
-        container = 'app';
-        title     = param;
-        global.title = title;
+        tag             = $('head')[0];
+        container       = 'app';
+        title           = param;
+        global.history  = title;
         backShowHeader(title);
         clearHead(tag);
     }
@@ -111,27 +111,36 @@ function backShowHeader(title) {
 }
 
 const commonFunc = {
-    rpcGet(url,param,CBF,CBP) {
-        showLoading();
-        $.get(url,param)
-        .done((res)=>CBF(res,CBP))
-        .fail(rpcFail)
-        .always(hideLoading)
-    },
-    rpcPost(url,param,CBF,CBP) {
-        showLoading();
-        $.post(url,param)
-        .done((res)=>CBF(res,CBP))
+    rpcCall(option) {
+        var param = {
+            url     : option.url
+        }
+
+        if(option.headers)  param['headers'] = option.headers;
+        
+        if(option.method)   param['method'] = option.method;
+        else                param['method'] = 'POST';
+
+        if(option.data)     param['data'] = options.data;
+
+        $.ajax(param)
+        .done((res)=>option.CBF(res,option.CBP))
         .fail(rpcFail)
         .always(hideLoading)
     },
     includeHTML(param) {
+        var rpcOption = {
+            CBF : CBHTML,
+            CBP : param,
+            method : 'get'
+        };
         if(typeof param === 'string') {
-            this.rpcGet(rpc.hostUrl+'/html/'+param+'.html','',CBHTML,param);
+            rpcOption['url'] = rpc.hostUrl+'/html/'+param+'.html';
         }
         else {
-            this.rpcGet(rpc.hostUrl+'/html/'+param.title+'.html','',CBHTML,param);
+            rpcOption['url'] = rpc.hostUrl+'/html/'+param.title+'.html';
         }
+        this.rpcCall(rpcOption);
     },
     randomString(type,length) {
         if(!type) type = 'stringNumber';

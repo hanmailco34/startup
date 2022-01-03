@@ -1,4 +1,5 @@
-var title;
+var history;
+var latlng;
 const backHistory = [
     'home',
     ['missing'],
@@ -6,7 +7,8 @@ const backHistory = [
 ]
 
 var global = {
-    title : title,
+    history : history,
+    latlng : latlng,
     backHistory : backHistory
 }
 
