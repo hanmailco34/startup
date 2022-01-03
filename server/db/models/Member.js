@@ -26,6 +26,10 @@ module.exports = (sequelize,DataTypes,Model) => {
         email: {
             type: DataTypes.STRING
         },
+        point: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        }
     },options);
 
     return Member;

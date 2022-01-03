@@ -4,8 +4,24 @@ import rpc from './rpc.js';
 $(function(){
     var tokenCheck = (res) => {
         if(res.status === 'OK') {
-            sessionStorage.setItem('name',res.data.name);
-            common.includeHTML('home');
+            const sessionData = {
+                name    : res.data.name,
+                point   : res.data.point
+            }
+            common.session(sessionData);
+            const includeOption = {
+                title   : 'header',
+                tag     : 'header'
+            };
+            common.includeHTML(includeOption);
+            var data = common.session('location','get');
+            if(data.location) {
+                common.session('location','delete');
+                common.includeHTML(location);
+            }
+            else {
+                common.includeHTML('home');
+            }            
         }
         else {
             common.includeHTML('login');

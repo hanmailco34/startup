@@ -1,4 +1,5 @@
 import rpc from './rpc.js';
+import global from './global.js';
 
 function clearHead(head) {
     var cmd = false;
@@ -30,12 +31,26 @@ function includeCSS(head,title) {
     head.appendChild(link);
 }
 
-function CBHTML(res,title) {
-    const head = $('head')[0];
-    clearHead(head);
-    includeJS(head,title);
-    includeCSS(head,title);
-    $('#app').html(res);
+function CBHTML(res,param) {
+    var tag, container, title = '';
+    
+    if(typeof param === 'string') {
+        tag       = $('head')[0];
+        container = 'app';
+        title     = param;
+        global.title = title;
+        backShowHeader(title);
+        clearHead(tag);
+    }
+    else {
+        tag       = $(param.tag)[0];
+        container = param.tag;
+        title     = param.title;
+    }
+    
+    includeJS(tag,title);
+    includeCSS(tag,title);
+    $(`#${container}`).html(res);
 }
 
 function rpcFail() {
@@ -90,6 +105,11 @@ function hideAlert(_id, obj) {
     }
 }
 
+function backShowHeader(title) {
+    if(title === 'home') $('#header_back').hide();
+    else $('#header_back').show();
+}
+
 const commonFunc = {
     rpcGet(url,param,CBF,CBP) {
         showLoading();
@@ -105,8 +125,13 @@ const commonFunc = {
         .fail(rpcFail)
         .always(hideLoading)
     },
-    includeHTML(title) {
-        this.rpcGet(rpc.hostUrl+'/html/'+title+'.html','',CBHTML,title);
+    includeHTML(param) {
+        if(typeof param === 'string') {
+            this.rpcGet(rpc.hostUrl+'/html/'+param+'.html','',CBHTML,param);
+        }
+        else {
+            this.rpcGet(rpc.hostUrl+'/html/'+param.title+'.html','',CBHTML,param);
+        }
     },
     randomString(type,length) {
         if(!type) type = 'stringNumber';
@@ -189,6 +214,47 @@ const commonFunc = {
         $('#alert_container').off().on('click', function(e) {
             if(e.target.id === 'alert_container') hideAlert('container', obj);
         });        
+    },
+    session(data, cmd) {
+        if(!cmd) cmd = 'insert';
+
+        if(cmd === 'insert') {
+            for(const [k,v] of Object.entries(data)) {
+                sessionStorage.setItem(k, v);
+            }
+        }
+        else if(cmd === 'delete') {
+            if(typeof data === 'string') {
+                sessionStorage.removeItem(data);
+            }
+            else {
+                for(let i = 0; i < data.length; i++) {
+                    let key = data[i];
+                    sessionStorage.removeItem(key);
+                }
+            }            
+        }
+        else if(cmd === 'get') {
+            var obj = {};
+            if(typeof data === 'string') {
+                obj[data] = sessionStorage.getItem(data);
+            }
+            else {
+                for(let i = 0; i < data.length; i++) {
+                    let key = data[i];
+                    obj[key] = sessionStorage.getItem(key);
+                }
+            }
+            return obj;
+        }
+    },
+    numberFormat(num) {
+        if(typeof num === 'number') {
+            return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,",");
+        }
+        else if(typeof num === 'string') {
+            return parseFloat(num.replace(/,/g,""));
+        }
     }
 }
 
