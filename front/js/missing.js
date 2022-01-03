@@ -21,26 +21,56 @@ $(function() {
         var zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-        var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+        var markerPosition  = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude); 
 
         var marker = new kakao.maps.Marker({
           position: markerPosition
         });
 
-        marker.setMap(map);
+        //marker.setMap(map);
 
-        // event 종류 click, dragend, zoom_changed, center_changed, bounds_changed, tilesloaded
+        
 
-        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-          var latlng = mouseEvent.latLng;
-
-          marker.setPosition(latlng);
+        var clickMaker = new kakao.maps.Marker({
+          position: markerPosition
         });
 
-        /* kakao.maps.event.addListener(map, 'center_changed', function() {
-          marker.setPosition(map.getCenter());
-        }); */
+        var infowindow = new kakao.maps.InfoWindow({
+          position: markerPosition
+        });        
 
+        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+          infowindow.close();
+          var latlng  = mouseEvent.latLng;
+          var content = `
+          <div class="if_content">
+            <span id="disappearance">신고하기</span>
+            <div class="close" id="ifClose">X</div>
+          </div>
+          `;
+          infowindow = new kakao.maps.InfoWindow({
+            position : latlng, 
+            content : content
+          });
+          var clickMakerImage = new kakao.maps.MarkerImage(
+            '../img/flasher.png',
+            new kakao.maps.Size(41, 45), new kakao.maps.Point(20, 40)
+          );
+          clickMaker.setImage(clickMakerImage);
+          clickMaker.setPosition(latlng);
+          clickMaker.setMap(map);
+          clickMaker.setVisible(true);
+          infowindow.open(map, clickMaker);
+          $('#disappearance').off().on('click', function() {
+            alert(1);
+          });
+          $('#ifClose').off().on('click', function() {
+            clickMaker.setVisible(false);
+            infowindow.close();
+          });
+        });
+
+        map.relayout();
       }, function(error) {
         console.error(error);
       }, {
@@ -49,14 +79,10 @@ $(function() {
         timeout: Infinity
       });
     } else {
-      common.alert('GPS를 지원하지 않습니다');
+      common.alert('GPS를 지원하지 않습니다','','error');
     }
   }
 
   getLocation();
-
-  $('#move').click(function() {
-    var moveLatLon = new kakao.maps.LatLng(33.450580, 126.574942);
-    map.panTo(moveLatLon);
-  });
 });
+
