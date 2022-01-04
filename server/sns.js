@@ -24,11 +24,22 @@ module.exports = (path,app) => {
   })
 }
 
-function kakaoLogin(req, res){
+async function HttpPost(options){
+  const option = options;
+  return new Promise(function(resolve, reject){
+    request.post(option, function(error, response, body){
+      if(!error && response.statusCode == 200){
+        console.log('body----->'+body);
+        resolve(JSON.parse(body));
+      }
+    })
+  })
+}
+
+async function kakaoLogin(req, res){
   const redirectURI = encodeURI(req.protocol + '://' + req.headers.host + req.url.split('?')[0] + '?type=kakao');
-  const api_url = 'https://kauth.kakao.com/oauth/token';
   const options = {
-    url : api_url,
+    url : 'https://kauth.kakao.com/oauth/token',
     headers : {'Content-Type':'application/x-www-form-urlencoded;charset=utf-8'},
     body : qs.stringify({
       grant_type : 'authorization_code',
@@ -38,14 +49,21 @@ function kakaoLogin(req, res){
       code : req.query.code
     })
   }
-  console.log('options===>'+JSON.stringify(options));
-  request.post(options, function(error, response, body){
-    console.log('error------->'+error);
-    console.log('response------->'+JSON.stringify(response));
-    console.log('body------->'+body);
-  })
+  const result = await HttpPost(options);
+  const token_options = {
+    url : 'https://kapi.kakao.com/v2/user/me',
+    headers : {'Content-Type'  : 'application/x-www-form-urlencoded;charset=utf-8',
+               'Authorization' : 'Bearer ' + result.access_token}
+  }
+  const tokenResult = await HttpPost(token_options);
+  const param = {
+    id    : tokenResult.id.toString(),
+    name  : tokenResult.kakao_account.profile.nickname,
+    email : tokenResult.kakao_account.email,
+    type  : 'kakao'
+  }
+  getInfo(req, res, param);
 }
-
 
 function naverLogin(req, res) {
   const code = req.query.code;
