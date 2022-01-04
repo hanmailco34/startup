@@ -6,7 +6,8 @@ $(function(){
         if(res.status === 'OK') {
             const sessionData = {
                 name    : res.data.name,
-                point   : res.data.point
+                point   : res.data.point,
+                environment : res.data.environment
             }
             common.session(sessionData);
             const includeOption = {

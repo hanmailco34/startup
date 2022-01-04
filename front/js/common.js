@@ -18,7 +18,7 @@ function clearHead(head) {
 
 function includeJS(head,title) {
     const sc = document.createElement('script');
-    if(environment === 'develope') sc.src = `js/${title}.js`;
+    if(environment === 'development') sc.src = `js/${title}.js`;
     else sc.src = `${manifestObj[title]}`;    
     sc.type = 'module';
     head.appendChild(sc);

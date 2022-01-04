@@ -6,3 +6,4 @@
 # front에서 js파일들 필요한 부분은 import해서 사용
 # sequlize 활용한 DB
 # winston & morgan을 이용한 로그관리
+# 헤로쿠를 이용한 서버

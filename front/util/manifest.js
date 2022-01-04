@@ -1,8 +1,8 @@
 var manifestObj = {};
-const environment = (location.hostname === 'localhost') ? 'develope' : 'product';
+const environment = sessionStorage.getItem('environment');
 
 $(async function(){
-    if(environment === 'develope') {
+    if(environment === 'development') {
         var sc1 = document.createElement('script');
         sc1.src = '../js/index.js';
         sc1.type = 'module';
