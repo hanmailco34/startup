@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node run.js",
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,10 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "google-auth-library": "^7.11.0",
+    "jest": "^27.4.5",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "node-mocks-http": "^1.11.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "qs": "^6.10.2",
@@ -41,6 +43,7 @@
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.2.0",
     "style-loader": "^3.2.1",
+    "supertest": "^6.1.6",
     "webpack": "^5.50.0",
     "webpack-cli": "^4.7.2",
     "webpack-manifest-plugin": "^4.0.2"

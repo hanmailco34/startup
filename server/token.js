@@ -3,7 +3,7 @@ const fs            = require('fs');
 const {logger}      = require('./logger');
 const iss           = 'leesoobin';
 const sub           = 'hanmailco34@naver.com';
-const aud           = 'localhost';
+const aud           = 'dangdang';
 const exp           = '24h';
 const privatekey    = fs.readFileSync('privatekey');
 const publickey     = fs.readFileSync('publickey');
@@ -21,7 +21,7 @@ exports.setToken = function(info,res) {
         res.cookie("access_token", token, {
             maxAge: 60 * 60 * 60 * 1000
         });
-        return 1;
+        return token;
     }
     catch {
         return res.sendStatus(403).json({'message':'token fail'});
@@ -69,20 +69,4 @@ exports.check = (path, app) => {
             return res.json({status:'OOPS',msg:'잘못된 토큰입니다.'});
         }
     })
-}
-
-exports.getLoginInfo = (path, app) => {
-    app.post(path + '/check', (req) => {
-        const token = req.cookies.access_token;
-        const signOptions = {
-            issuer : iss,
-            subject : sub,
-            audience : aud,
-            maxAge : exp,
-            algorithms : ["RS256"]
-        }
-
-        const verify = jwt.verify(token,publickey,signOptions);
-        console.log(verify);            
-    });
 }
