@@ -5,6 +5,7 @@ module.exports = (app,environment) => {
     const htmlPath = path.join(__dirname,'..',`${environment}`,'html');
 
     app.get('/',(req,res)=>{
+        res.cookie('environment',process.env.NODE_ENV)
         const indexHtmlPath = path.join(htmlPath,'index.html');
         res.sendFile(indexHtmlPath);
     });

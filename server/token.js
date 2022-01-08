@@ -63,7 +63,7 @@ exports.check = (path, app) => {
         logger.info(`ip:${req.clientIp}, token:${token}`);
         try {
             const verify = jwt.verify(token,publickey,signOptions);
-            return res.json({status:'OK',data:{name:verify.name, point:verify.point, environment:process.env.NODE_ENV}});
+            return res.json({status:'OK',data:{name:verify.name, point:verify.point}});
         }
         catch {
             return res.json({status:'OOPS',msg:'잘못된 토큰입니다.'});

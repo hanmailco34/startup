@@ -51,8 +51,6 @@ async function kakaoLogin(req, res){
     email : tokenResult.data.data.kakao_account.email,
     type  : 'kakao'
   }
-  console.log(tokenResult);
-  console.log(param);
   getInfo(req, res, param);
 }
 

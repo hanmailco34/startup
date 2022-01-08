@@ -6,8 +6,7 @@ $(function(){
         if(res.status === 'OK') {
             const sessionData = {
                 name    : res.data.name,
-                point   : res.data.point,
-                environment : res.data.environment
+                point   : res.data.point
             }
             common.session(sessionData);
             const includeOption = {
@@ -25,7 +24,7 @@ $(function(){
             }            
         }
         else {
-            common.includeHTML('login');
+            common.includeHTML('login');            
         }
     }
     

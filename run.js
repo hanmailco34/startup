@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const {getToken} = require('./server/token');
 require('dotenv').config();
 const environment = (process.env.NODE_ENV === 'development') ? 'front' : 'public';
+
 if (process.env.NODE_ENV !== 'test') {
     app.listen(port,(res,err)=>{
         sequelize.connection();
@@ -24,6 +25,7 @@ app.use('/css',express.static(`./${environment}/css`));
 app.use('/js',express.static(`./${environment}/js`));
 app.use(morgan('HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms',{stream}));
 app.use(requestIp.mw());
+
 if (process.env.NODE_ENV !== 'test') {
     app.use((req,res,next) => {
         if(accessRefer.indexOf(req.headers.referer) === -1 && !(req.path === '/' || req.path === '/sns/cb')) {

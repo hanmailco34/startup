@@ -1,5 +1,11 @@
 var manifestObj = {};
-const environment = sessionStorage.getItem('environment');
+
+let environment;
+
+for(var i = 0; i < document.cookie.split(';').length; i++) {
+    var item = document.cookie.split(';')[i].split('=');
+    if('environment' === item[0]) environment = item[1];
+}
 
 $(async function(){
     if(environment === 'development') {
