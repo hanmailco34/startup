@@ -8,7 +8,7 @@ $.fn.createRadio = function(obj) {
         </div>
         `;
         this.append(_html);
-    }
+    }    
 }
 
 function clickRadio(_this) {

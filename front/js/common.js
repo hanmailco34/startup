@@ -16,18 +16,23 @@ function clearHead(head) {
     })
 }
 
-function includeJS(head,title) {
+function includeJS(head,title,module) {
+    if(module === undefined) module = true;
     const sc = document.createElement('script');
-    if(environment === 'development') sc.src = `js/${title}.js`;
+    if(environment === 'development') {
+        if(title.indexOf('/') === -1) sc.src = `js/${title}.js`;
+        else sc.src = title + '.js';
+    }
     else sc.src = `${manifestObj[title]}`;    
-    sc.type = 'module';
+    if(module) sc.type = 'module';
     head.appendChild(sc);
 }
 
 function includeCSS(head,title) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `css/${title}.css`;
+    if(title.indexOf('/') === -1) link.href = `css/${title}.css`;
+    else link.href = title + '.css';
     head.appendChild(link);
 }
 
@@ -128,6 +133,12 @@ const commonFunc = {
         .done((res)=>option.CBF(res,option.CBP))
         .fail(rpcFail)
         .always(hideLoading)
+    },
+    includeJavascript(param) {
+        includeJS($(param.tag)[0], param.title, param.module)
+    },
+    includeStyleSheet(param) {
+        includeCSS($(param.tag)[0], param.title)
     },
     includeHTML(param) {
         var rpcOption = {

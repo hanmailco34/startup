@@ -2,20 +2,18 @@ import rpc from './rpc.js';
 import global from './global.js';
 import common from './common.js';
 
-$(function() {
-    console.log(global.latlng);
-    
+$(function() {    
     global.latlng = {LA:126.84900193636805,Ma:37.472331556684615}
     const radioOption = [
         {
             name    : 'sex',
             value   : 'M',
-            text    : '남성' 
+            text    : '수컷' 
         },
         {
             name    : 'sex',
             value   : 'F',
-            text    : '여성'
+            text    : '암컷'
         }
     ]
     $('#sex').createRadio(radioOption);

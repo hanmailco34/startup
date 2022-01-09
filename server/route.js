@@ -1,4 +1,5 @@
-const path = require('path');
+const path      = require('path');
+const fs        = require('fs');
 const { check } = require('./token');
 
 module.exports = (app,environment) => {    
@@ -9,6 +10,10 @@ module.exports = (app,environment) => {
         const indexHtmlPath = path.join(htmlPath,'index.html');
         res.sendFile(indexHtmlPath);
     });
+
+    app.get('/components', (req, res) => {
+        return res.json({ status: 'OK', data:{ components : fs.readdirSync('./front/component/js') }})
+    })
 
     require('./crossword')('/crossword',app);
     require('./member')('/member',app);

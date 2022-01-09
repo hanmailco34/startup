@@ -23,10 +23,11 @@ app.use('/img',express.static(`./${environment}/img`));
 app.use('/util',express.static(`./${environment}/util`));
 app.use('/css',express.static(`./${environment}/css`));
 app.use('/js',express.static(`./${environment}/js`));
+app.use('/component',express.static(`./${environment}/component`));
 app.use(morgan('HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms',{stream}));
 app.use(requestIp.mw());
 
-if (process.env.NODE_ENV !== 'test') {
+/* if (process.env.NODE_ENV !== 'test') {
     app.use((req,res,next) => {
         if(accessRefer.indexOf(req.headers.referer) === -1 && !(req.path === '/' || req.path === '/sns/cb')) {
             res.send('잘못된 접근입니다.');
@@ -34,7 +35,7 @@ if (process.env.NODE_ENV !== 'test') {
         }
         else next();
     });
-}
+} */
 
 app.use((req,res,next) => {
     getToken(req,res,next); 
