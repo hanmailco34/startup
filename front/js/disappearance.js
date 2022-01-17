@@ -3,12 +3,13 @@ import global from './global.js';
 import common from './common.js';
 
 $(function() {    
-    global.latlng = {LA:126.84900193636805,Ma:37.472331556684615}
+    global.latlng = {La:126.84900193636805,Ma:37.472331556684615}
     const radioOption = [
         {
             name    : 'sex',
             value   : 'M',
-            text    : '수컷' 
+            text    : '수컷' ,
+            checked : true
         },
         {
             name    : 'sex',
