@@ -5,7 +5,7 @@ const iss           = 'leesoobin';
 const sub           = 'hanmailco34@naver.com';
 const aud           = 'dangdang';
 const exp           = '24h';
-const privatekey    = fs.readFileSync('privatekey');
+const privatekey    = (process.env.NODE_ENV === 'development')? fs.readFileSync('privatekey') : process.env.privatekey;
 const publickey     = fs.readFileSync('publickey');
 
 exports.setToken = function(info,res) {
