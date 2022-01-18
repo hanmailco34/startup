@@ -1,0 +1,10 @@
+/*!*******************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./front/css/disappearance.css ***!
+  \*******************************************************************************/
+.disapper_container .row_box {
+    display: flex;
+}
+
+.row_box .radio {
+    display: flex;
+}

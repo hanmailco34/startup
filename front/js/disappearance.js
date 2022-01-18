@@ -1,7 +1,8 @@
+import '../css/disappearance.css' assert { type: "css" };
 import rpc from './rpc.js';
 import global from './global.js';
 import common from './common.js';
-
+//TODO
 $(function() {    
     global.latlng = {La:126.84900193636805,Ma:37.472331556684615}
     const radioOption = [
@@ -38,4 +39,10 @@ $(function() {
         var d = getRadioValue('sex');
         console.log(d);
     });
+
+    const calendarOption = {
+
+    }
+
+    $('#calendar').createCalendar(calendarOption)
 });

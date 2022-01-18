@@ -43,8 +43,9 @@ $(function() {
             position : latlng, 
             content : content
           });
+          //TODO
           var clickMakerImage = new kakao.maps.MarkerImage(
-            '../img/flasher.png',
+            './js/3fcb3289971ef190d26c.png',
             new kakao.maps.Size(41, 45), new kakao.maps.Point(20, 40)
           );
           clickMaker.setImage(clickMakerImage);

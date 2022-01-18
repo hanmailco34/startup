@@ -1,3 +1,4 @@
+import '../css/index.css' assert { type: "css" };
 import common from './common.js';
 import rpc from './rpc.js';
 
@@ -14,13 +15,19 @@ $(function(){
                 tag     : 'header'
             };
             common.includeHTML(includeOption);
+            const componentOption = {
+                title   : 'components',
+                tag     : 'components',
+                module  : true
+            };
+            common.includeJavascript(componentOption);
             var data = common.session('history','get');
             if(data.history) {
                 common.session('history','delete');
                 common.includeHTML(data.history);
             }
             else {
-                common.includeHTML('disappearance');
+                common.includeHTML('home');
             }            
         }
         else {

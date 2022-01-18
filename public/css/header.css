@@ -307,28 +307,42 @@ body {
         opacity: 1;
     }
 }
-/*!**********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./front/css/home.css ***!
-  \**********************************************************************/
-.home_container .home_row_box {
+/*!************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./front/css/header.css ***!
+  \************************************************************************/
+.header {
+    text-align: center;
+    position: relative;
+    background-color: #2AC1BC;
+    padding: 60px 0 60px 0;
+    border-radius: 0 0 30px 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.header .header_left {
+    position: absolute;
+    left: 30px;
+    top: 60px;
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 50px;
 }
 
-.home_container .home_row_box .home_box {
-    width: 30%;
-    height: 300px;
-    background-color: #F6F6F6;
-    padding: 30px 0 0 30px;
+.header .header_point {
+    margin-left: 20px;
 }
 
-.home_container .home_row_box .home_box_title {
-    font-weight: 900;
-    font-size: 50px;
+.header .header_right {
+    position: absolute;
+    right: 30px;
+    top: 60px;
+    display: flex;
 }
 
-.home_container .home_row_box .home_box_content {
-    font-size: 25px;
-    margin-top: 10px;
+.header .header_avata {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: black;
+    margin: -10px 10px 0 0;
 }

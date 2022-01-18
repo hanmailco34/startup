@@ -19,7 +19,8 @@ function clearHead(head) {
 function includeJS(head,title,module) {
     if(module === undefined) module = true;
     const sc = document.createElement('script');
-    if(environment === 'development') {
+    //TODO
+    if(environment === 'development' || title.indexOf('component/js') >= 0) {
         if(title.indexOf('/') === -1) sc.src = `js/${title}.js`;
         else sc.src = title + '.js';
     }
@@ -44,6 +45,10 @@ function CBHTML(res,param) {
         container       = 'app';
         title           = param;
         global.history  = title;
+        var sessionData = {
+            'history' : title
+        }
+        commonFunc.session(sessionData);
         backShowHeader(title);
         clearHead(tag);
     }

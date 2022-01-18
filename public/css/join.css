@@ -4,6 +4,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: 35px;
 }
 
 #loading {
@@ -13,6 +14,298 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: none;
+}
+
+/* alert css */
+
+.alert_container {
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.4);
+    height: 100%;
+    place-content: center;
+}
+
+.show {
+    display: grid !important;
+}
+
+.alert_container .alert_box {
+    position: relative;    
+    display: grid;
+    width: 32em;
+    max-width: 100%;
+    padding: 0 0 1.25em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #545454;
+    font-family: inherit;
+    font-size: 1rem;
+    align-self: center;
+    justify-self: center;
+    animation: alert-show .3s;
+}
+
+.alert_box .alert_title {
+    position: relative;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.8em 1em 0;
+    color: inherit;
+    font-size: 1.875em;
+    font-weight: 600;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.alert_box .alert_content {
+    justify-content: center;
+    margin: 1em 1.6em 0.3em;
+    padding: 0;
+    overflow: auto;
+    color: inherit;
+    font-size: 1.125em;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.alert_box .alert_btn_box {
+    display: flex;
+    z-index: 1;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-self: center;
+    align-items: center;
+    width: auto;
+    margin: 1.25em auto 0;
+    padding: 0;
+}
+
+.alert_box .alert_btn_box .alert_btn {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;    
+    font-size: 1em;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0.3125em;
+    padding: 0.625em 1.1em;
+    transition: box-shadow .1s;
+    box-shadow: 0 0 0 3px transparent;
+    font-weight: 500;
+}
+
+.alert_box .alert_btn_box .alert_btn_confirm {    
+    background-color: #7066e0;
+    color: #fff;
+}
+
+.alert_box .alert_btn_box .alert_btn_deny {
+    background-color: #dc3741;
+    color: #fff;
+}
+
+.alert_box .alert_btn_box .alert_btn_cancel {
+    background-color: #6e7881;
+    color: #fff;
+}
+
+.alert_box .alert_icon {
+    position: relative;
+    width: 5em;
+    height: 5em;
+    margin: 2.5em auto 0.6em;
+    border: 0.25em solid transparent;
+    border-radius: 50%;
+    font-family: inherit;
+    animation: alert-icon .5s;
+}
+
+.alert_box .alert_icon.success {
+    border-color: #a5dc86;
+    color: #a5dc86;
+}
+
+.alert_box .alert_icon.error {
+    border-color: #f27474;
+    color: #f27474;
+}
+
+.alert_box .alert_icon.info {
+    border-color: #9de0f6;
+    color: #3fc3ee;
+}
+
+.alert_box .alert_icon.question {
+    border-color: #c9dae1;
+    color: #87adbd;
+}
+
+.alert_box .alert_icon.warning .warning_icon,
+.alert_box .alert_icon.info .info_icon,
+.alert_box .alert_icon.question .question_icon
+ {
+    font-size: 3.75em;
+    display: flex;
+    justify-self: center;
+    animation: alert-icon-mark .5s;
+}
+.alert_box .alert_icon.success .alert_success,
+.alert_box .alert_icon.error .alert_error {
+    position: relative;
+    flex-grow: 1;
+    animation: alert-icon-cross .5s;
+}
+
+.alert_box .alert_icon.success .alert_success .success_v {
+    position: absolute;
+    left: 1.6em;
+    height: 0.3125em;
+    border-radius: 0.125em;
+    background-color: #a5dc86;
+}
+
+.alert_box .alert_icon.success .alert_success .success_v_left {
+    top: 2.875em;
+    left: 0.8125em;
+    width: 1.5625em;
+    transform: rotate(45deg);
+}
+
+.alert_box .alert_icon.success .alert_success .success_v_right {
+    top: 2.375em;
+    right: 0.5em;
+    width: 2.9375em;
+    transform: rotate(-45deg);
+}
+
+.alert_box .alert_icon.error .alert_error .error_x {
+    position: absolute;
+    top: 2.3125em;
+    width: 2.9375em;
+    height: 0.3125em;
+    border-radius: 0.125em;
+    background-color: #f27474;
+}
+
+.alert_box .alert_icon.error .alert_error .error_x_left {
+    left: 1em;
+    transform: rotate(45deg);
+}
+
+.alert_box .alert_icon.error .alert_error .error_x_right {
+    left: 1em;
+    transform: rotate(-45deg);
+}
+
+.alert_box .alert_icon.warning {
+    border-color: #facea8;
+    color: #f8bb86;   
+}
+
+.alert_box .alert_footer {
+    margin: 1em 0 0;
+    padding: 1em 1em 0;
+    border-top: 1px solid #eee;
+    color: inherit;
+    font-size: 1em;
+    text-align: center;
+}
+
+.alert_box .alert_image {
+    max-width: 100%;
+    margin: 2em auto 1em;
+}
+
+.alert_box .alert_close {
+    z-index: 2;
+    width: 1.2em;    
+    margin-bottom: -1.2em;    
+    color: #ccc;
+    font-size: 2em;
+    cursor: pointer;
+    justify-self: end;
+}
+
+.alert_box .alert_close:hover {
+    color: #f27474;
+}
+
+@keyframes alert-show {
+    0% {
+        transform: scale(.7);
+    }
+    45% {
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes alert-icon {
+    0% {
+        transform: rotateX(100deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes alert-icon-cross {
+    0% {
+        margin-top: 1.625em;
+        transform: scale(.4);
+        opacity: 0;
+    }
+    50% {
+        margin-top: 1.625em;
+        transform: scale(.4);
+        opacity: 0;
+    }
+    80% {
+        margin-top: -0.375em;
+        transform: scale(1.15);
+    }
+    100% {
+        margin-top: 0;
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes alert-icon-mark {
+    0% {
+        transform: rotateZ(45deg);
+        opacity: 0;
+    }
+    25% {
+        transform: rotateZ(-25deg);
+        opacity: .4;
+    }
+    50% {
+        transform: rotateZ(15deg);
+        opacity: .8;
+    }
+    75% {
+        transform: rotateZ(-5deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateX(0);
+        opacity: 1;
+    }
 }
 /*!**********************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./front/css/join.css ***!

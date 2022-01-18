@@ -23,7 +23,8 @@ app.use('/img',express.static(`./${environment}/img`));
 app.use('/util',express.static(`./${environment}/util`));
 app.use('/css',express.static(`./${environment}/css`));
 app.use('/js',express.static(`./${environment}/js`));
-app.use('/component',express.static(`./${environment}/component`));
+//TODO
+app.use('/component',express.static(`./front/component`));
 app.use(morgan('HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms',{stream}));
 app.use(requestIp.mw());
 

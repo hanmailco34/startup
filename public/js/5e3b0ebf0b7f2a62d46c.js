@@ -1,8 +1,14 @@
 var manifestObj = {};
-const environment = (location.hostname === 'localhost') ? 'develope' : 'product';
+
+var environment = '';
+
+for(var i = 0; i < document.cookie.split(';').length; i++) {
+    var item = document.cookie.split(';')[i].split('=');
+    if('environment' === item[0].trim()) environment = item[1];
+}
 
 $(async function(){
-    if(environment === 'develope') {
+    if(environment === 'development') {
         var sc1 = document.createElement('script');
         sc1.src = '../js/index.js';
         sc1.type = 'module';
