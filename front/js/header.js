@@ -14,9 +14,7 @@ $(function() {
         location.href = rpc.hostUrl;
     });
     $('#header_back').click(function() {
-        console.log(global.backHistory);
         global.history = common.session('history','get').history;
-        console.log(global);
         if(global.backHistory[1].indexOf(global.history) >= 0) $('#header_title').click();
         else {
             for(var i = 0; i < global.backHistory[2].length; i++) {

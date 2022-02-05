@@ -28,7 +28,7 @@ app.use('/component',express.static(`./front/component`));
 app.use(morgan('HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms',{stream}));
 app.use(requestIp.mw());
 
-/* if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test') {
     app.use((req,res,next) => {
         if(accessRefer.indexOf(req.headers.referer) === -1 && !(req.path === '/' || req.path === '/sns/cb')) {
             res.send('잘못된 접근입니다.');
@@ -36,7 +36,7 @@ app.use(requestIp.mw());
         }
         else next();
     });
-} */
+}
 
 app.use((req,res,next) => {
     getToken(req,res,next); 

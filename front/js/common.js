@@ -45,10 +45,12 @@ function CBHTML(res,param) {
         container       = 'app';
         title           = param;
         global.history  = title;
-        var sessionData = {
-            'history' : title
+        if(title !== 'login') {
+            var sessionData = {
+                'history' : title
+            }
+            commonFunc.session(sessionData);
         }
-        commonFunc.session(sessionData);
         backShowHeader(title);
         clearHead(tag);
     }
