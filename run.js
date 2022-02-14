@@ -9,7 +9,8 @@ const requestIp = require('request-ip');
 const cookieParser = require('cookie-parser');
 const {getToken} = require('./server/token');
 require('dotenv').config();
-const environment = (process.env.NODE_ENV === 'development') ? 'front' : 'public';
+//const environment = (process.env.NODE_ENV === 'development') ? 'front' : 'public';
+const environment = 'front';
 
 if (process.env.NODE_ENV !== 'test') {
     app.listen(port,(res,err)=>{
