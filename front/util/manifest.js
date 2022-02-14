@@ -1,11 +1,11 @@
 var manifestObj = {};
 
-var environment = '';
+var environment = 'production';
 
-for(var i = 0; i < document.cookie.split(';').length; i++) {
+/* for(var i = 0; i < document.cookie.split(';').length; i++) {
     var item = document.cookie.split(';')[i].split('=');
     if('environment' === item[0].trim()) environment = item[1];
-}
+} */
 
 $(async function(){
     if(environment === 'development') {
