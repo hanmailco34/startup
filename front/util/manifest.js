@@ -8,6 +8,7 @@ var environment = 'development';
 } */
 
 $(async function(){
+    alert(environment);
     if(environment === 'development') {
         var sc1 = document.createElement('script');
         sc1.src = '../js/index.js';
