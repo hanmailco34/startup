@@ -1,7 +1,7 @@
 var manifestObj = {};
 
 var environment = 'development';
-
+alert(environment);
 /* for(var i = 0; i < document.cookie.split(';').length; i++) {
     var item = document.cookie.split(';')[i].split('=');
     if('environment' === item[0].trim()) environment = item[1];
