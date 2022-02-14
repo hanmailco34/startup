@@ -6,6 +6,13 @@ var environment = 'development';
     var item = document.cookie.split(';')[i].split('=');
     if('environment' === item[0].trim()) environment = item[1];
 } */
+window.onload = function() {
+    alert(environment);
+    var sc1 = document.createElement('script');
+        sc1.src = '../js/index.js';
+        sc1.type = 'text/javascript';
+        $('head').append(sc1);
+}
 
 $(async function(){
     alert(environment);
