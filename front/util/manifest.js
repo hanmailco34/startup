@@ -1,6 +1,6 @@
 var manifestObj = {};
 
-var environment = 'production';
+var environment = 'development';
 
 /* for(var i = 0; i < document.cookie.split(';').length; i++) {
     var item = document.cookie.split(';')[i].split('=');
