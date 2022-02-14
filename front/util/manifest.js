@@ -11,6 +11,7 @@ $(async function(){
     if(environment === 'development') {
         var sc1 = document.createElement('script');
         sc1.src = '../js/index.js';
+        sc1.type = 'text/javascript';
         //sc1.type = 'module';
         $('head').append(sc1);
     }
