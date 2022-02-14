@@ -1,26 +1,17 @@
 var manifestObj = {};
 
-var environment = 'development';
-alert(environment);
-/* for(var i = 0; i < document.cookie.split(';').length; i++) {
+var environment = '';
+
+for(var i = 0; i < document.cookie.split(';').length; i++) {
     var item = document.cookie.split(';')[i].split('=');
     if('environment' === item[0].trim()) environment = item[1];
-} */
-window.onload = function() {
-    alert(environment);
-    var sc1 = document.createElement('script');
-        sc1.src = '../js/index.js';
-        sc1.type = 'text/javascript';
-        $('head').append(sc1);
 }
 
 $(async function(){
-    alert(environment);
     if(environment === 'development') {
         var sc1 = document.createElement('script');
         sc1.src = '../js/index.js';
-        sc1.type = 'text/javascript';
-        //sc1.type = 'module';
+        sc1.type = 'module';
         $('head').append(sc1);
     }
     else {
