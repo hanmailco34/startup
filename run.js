@@ -19,6 +19,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 app.use(cookieParser());
 app.use(express.json());
+app.use('/data',express.static('./data'));
 app.use('/img',express.static(`./${environment}/img`));
 app.use('/util',express.static(`./${environment}/util`));
 app.use('/css',express.static(`./${environment}/css`));

@@ -1,0 +1,18 @@
+.foodUpload_container .file_upload_box {
+    padding-top: 150px;
+}
+
+.foodUpload_container .picture_box {
+    background: url(../img/upload2.png);
+    background-size: 100% 100%;
+    width: 40%;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.foodUpload_container .upload_title_box {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-top: 30px;
+    text-align: center;
+}

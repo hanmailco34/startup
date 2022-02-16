@@ -2,8 +2,8 @@ var history;
 var latlng;
 const backHistory = [
     'home',
-    ['missing'],
-    [['disappearance']]
+    ['missing','food'],
+    [['disappearance'],['foodUpload']]
 ]
 
 var global = {
