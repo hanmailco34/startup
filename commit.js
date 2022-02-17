@@ -5,6 +5,7 @@ async function run() {
     //heroku login
     /* await execFunc('eval $(ssh-agent -s)');
     await execFunc('ssh-add ~/.ssh/linkprice');*/
+    await execFunc('git pull');
     await execFunc('git add .');
     await execFunc(`git commit -m '${argv}'`);
     await execFunc('git push heroku master');
