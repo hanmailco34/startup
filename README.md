@@ -1,4 +1,5 @@
 # startup
+# URL : https://k-start-up.herokuapp.com/
 # node express
 # DB: postgresql
 # 웹팩 5
