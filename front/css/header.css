@@ -18,6 +18,10 @@
     display: flex;
 }
 
+.header .header_left .header_back {
+    cursor: pointer;
+}
+
 .header .header_point {
     margin-left: 20px;
 }

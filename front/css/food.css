@@ -23,6 +23,7 @@
     width: 50px;
     background: url(../img/upload.png);
     background-size: 100% 100%;
+    cursor: pointer;
 }
 
 .food_container .top .search_box .search_icon {

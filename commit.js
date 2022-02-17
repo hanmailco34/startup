@@ -2,7 +2,9 @@ var exec = require('child_process').exec;
 var argv = process.argv[2];
 
 async function run() {
-    //await execFunc('ssh-add ~/.ssh/linkprice');
+    //heroku login
+    /* await execFunc('eval $(ssh-agent -s)');
+    await execFunc('ssh-add ~/.ssh/linkprice');*/
     await execFunc('git add .');
     await execFunc(`git commit -m '${argv}'`);
     await execFunc('git push heroku master');
@@ -18,7 +20,4 @@ function execFunc(cmd) {
     })
 }
 
-//git bash
-//eval $(ssh-agent -s)
-//heroku login
 run();

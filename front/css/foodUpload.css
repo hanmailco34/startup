@@ -1,5 +1,6 @@
 .foodUpload_container .file_upload_box {
     padding-top: 150px;
+    cursor: pointer;
 }
 
 .foodUpload_container .picture_box {
@@ -15,4 +16,26 @@
     font-weight: 600;
     margin-top: 30px;
     text-align: center;
+}
+
+.foodUpload_container .uploaded_title_box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.show_file_upload .drag_div {
+    position: relative;
+    float: left;
+}
+
+.show_file_upload .drag_div img {
+    width: 300px;
+    height: 300px;
+}
+
+.show_file_upload .drag_div .img_close {
+    position:absolute;
+    right:6px;
+    top:-7px;
+    cursor:pointer;
 }
