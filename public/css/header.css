@@ -16,6 +16,10 @@ body {
     display: none;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 /* alert css */
 
 .alert_container {
@@ -326,6 +330,10 @@ body {
     left: 30px;
     top: 60px;
     display: flex;
+}
+
+.header .header_left .header_back {
+    cursor: pointer;
 }
 
 .header .header_point {

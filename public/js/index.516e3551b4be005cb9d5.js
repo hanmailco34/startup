@@ -26,17 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing'],\r\n    [['disappearance']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing','food'],\r\n    [['disappearance'],['foodUpload']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
 
 /***/ }),
 
-/***/ "./front/js/login.js":
+/***/ "./front/js/index.js":
 /*!***************************!*\
-  !*** ./front/js/login.js ***!
+  !*** ./front/js/index.js ***!
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n/* harmony import */ var _css_login_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/login.css */ \"./front/css/login.css\");\n\r\n\r\n\r\n\r\n$(function(){\r\n    var naver_client_id = 'qZEYV_9Dnf7uxDSIELMm';\r\n    var google_client_id = '599329073244-l451mgtnohltugodvaa51j3b4o5ruhk3.apps.googleusercontent.com';\r\n    var kakao_client_id = '14f2f8dfec49d3052f2c10888f4d26e9';\r\n    var state = _common_js__WEBPACK_IMPORTED_MODULE_0__.default.randomString();\r\n    var naver_redirectURI = encodeURI(_rpc_js__WEBPACK_IMPORTED_MODULE_1__.default.snsCBUrl + '?type=naver');\r\n    var gogole_auth = '';\r\n    var google_redirectURI = encodeURI(_rpc_js__WEBPACK_IMPORTED_MODULE_1__.default.snsCBUrl + '?type=google');\r\n    var kakao_redirectURI = encodeURI(_rpc_js__WEBPACK_IMPORTED_MODULE_1__.default.snsCBUrl + '?type=kakao');\r\n    \r\n    var naver_api_url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + naver_client_id + '&redirect_uri=' + naver_redirectURI + '&state=' + state;\r\n    var kakao_api_url = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakao_client_id}&redirect_uri=${kakao_redirectURI}`;\r\n    \r\n    $('#naverLoginBtn').click(function() {\r\n        location.href = naver_api_url\r\n    });\r\n    $('#googleLoginBtn').click(function() {\r\n        gapi.load('auth2', function() {\r\n            gogole_auth = gapi.auth2.init({\r\n                client_id : google_client_id\r\n            });\r\n\r\n            gogole_auth.signIn().then(result => {\r\n                location.href = google_redirectURI+'&token='+result.getAuthResponse().id_token;\r\n            });\r\n        });\r\n    });\r\n    $('#kakaoLoginBtn').click(function() {\r\n        location.href = kakao_api_url\r\n    })\r\n});\n\n//# sourceURL=webpack://startup/./front/js/login.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/index.css */ \"./front/css/index.css\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n\r\n\r\n\r\n\r\n$(function(){\r\n    var tokenCheck = (res) => {\r\n        if(res.status === 'OK') {\r\n            const sessionData = {\r\n                name    : res.data.name,\r\n                point   : res.data.point\r\n            }\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session(sessionData);\r\n            const includeOption = {\r\n                title   : 'header',\r\n                tag     : 'header'\r\n            };\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML(includeOption);\r\n            const componentOption = {\r\n                title   : 'components',\r\n                tag     : 'components',\r\n                module  : true\r\n            };\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeJavascript(componentOption);\r\n            var data = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','get');\r\n            if(data.history) {\r\n                _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','delete');\r\n                _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML(data.history);\r\n            }\r\n            else {\r\n                _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML('home');\r\n            }            \r\n        }\r\n        else {\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML('login');            \r\n        }\r\n    }\r\n    \r\n    var rpcOption = {\r\n        url : _rpc_js__WEBPACK_IMPORTED_MODULE_2__.default.checkUrl,\r\n        CBF : tokenCheck\r\n    }\r\n    _common_js__WEBPACK_IMPORTED_MODULE_1__.default.rpcCall(rpcOption);\r\n})\n\n//# sourceURL=webpack://startup/./front/js/index.js?");
 
 /***/ }),
 
@@ -50,13 +50,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./front/css/login.css":
+/***/ "./front/css/index.css":
 /*!*****************************!*\
-  !*** ./front/css/login.css ***!
+  !*** ./front/css/index.css ***!
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/login.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/index.css?");
 
 /***/ })
 
@@ -120,7 +120,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/login.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/index.js");
 /******/ 	
 /******/ })()
 ;

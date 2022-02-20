@@ -16,7 +16,7 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing'],\r\n    [['disappearance']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing','food'],\r\n    [['disappearance'],['foodUpload']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
 
 /***/ })
 

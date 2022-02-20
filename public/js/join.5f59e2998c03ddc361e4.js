@@ -20,23 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./front/js/disappearance.js":
-/*!***********************************!*\
-  !*** ./front/js/disappearance.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_disappearance_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/disappearance.css */ \"./front/css/disappearance.css\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n/* harmony import */ var _global_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global.js */ \"./front/js/global.js\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n\r\n\r\n\r\n\r\n//TODO\r\n$(function() {    \r\n    _global_js__WEBPACK_IMPORTED_MODULE_2__.default.latlng = {La:126.84900193636805,Ma:37.472331556684615}\r\n    const radioOption = [\r\n        {\r\n            name    : 'sex',\r\n            value   : 'M',\r\n            text    : '수컷' ,\r\n            checked : true\r\n        },\r\n        {\r\n            name    : 'sex',\r\n            value   : 'F',\r\n            text    : '암컷'\r\n        }\r\n    ]\r\n    $('#sex').createRadio(radioOption);\r\n\r\n    var option = {\r\n        data: {\r\n            dogBreed: '견종',\r\n            name: '개이름',\r\n            age: 18,\r\n            sex: 'F',\r\n            weight: 18.18,\r\n            missingData: '2020-01-02 09:00:00',\r\n            gratuity: 200,\r\n            extra: '이쁘고 귀엽고 총명하다.그리고 오른쪽 뒤에 반점이 있습니다.',\r\n            latitude: _global_js__WEBPACK_IMPORTED_MODULE_2__.default.latlng.La,\r\n            longitude: _global_js__WEBPACK_IMPORTED_MODULE_2__.default.latlng.Ma\r\n        }\r\n    }\r\n    console.log(option);\r\n    $('#disapper').click(function() {\r\n        var d = getRadioValue('sex');\r\n        console.log(d);\r\n    });\r\n\r\n    const calendarOption = {\r\n\r\n    }\r\n\r\n    $('#calendar').createCalendar(calendarOption)\r\n});\r\n\n\n//# sourceURL=webpack://startup/./front/js/disappearance.js?");
-
-/***/ }),
-
 /***/ "./front/js/global.js":
 /*!****************************!*\
   !*** ./front/js/global.js ***!
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing'],\r\n    [['disappearance']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing','food'],\r\n    [['disappearance'],['foodUpload']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
+
+/***/ }),
+
+/***/ "./front/js/join.js":
+/*!**************************!*\
+  !*** ./front/js/join.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _css_join_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/join.css */ \"./front/css/join.css\");\n\r\n\r\n\r\n$(function(){\r\n    $('#loginBtn').on('click',()=>{\r\n        _common_js__WEBPACK_IMPORTED_MODULE_0__.default.includeHTML('login');\r\n    })\r\n})\n\n//# sourceURL=webpack://startup/./front/js/join.js?");
 
 /***/ }),
 
@@ -50,13 +50,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./front/css/disappearance.css":
-/*!*************************************!*\
-  !*** ./front/css/disappearance.css ***!
-  \*************************************/
+/***/ "./front/css/join.css":
+/*!****************************!*\
+  !*** ./front/css/join.css ***!
+  \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/disappearance.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/join.css?");
 
 /***/ })
 
@@ -120,7 +120,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/disappearance.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/join.js");
 /******/ 	
 /******/ })()
 ;

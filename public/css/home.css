@@ -16,6 +16,10 @@ body {
     display: none;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 /* alert css */
 
 .alert_container {

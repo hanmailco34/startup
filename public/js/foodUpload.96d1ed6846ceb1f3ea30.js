@@ -20,13 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./front/js/foodUpload.js":
+/*!********************************!*\
+  !*** ./front/js/foodUpload.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_foodUpload_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/foodUpload.css */ \"./front/css/foodUpload.css\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n/* harmony import */ var _global_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global.js */ \"./front/js/global.js\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n\r\n\r\n\r\n\r\n\r\n$(function() {\r\n    var img_id = 0;\r\n    // 선택영역 클릭시 파일업로드 나타남\r\n    $('#file_upload').click(function() {\r\n        $('#file_data').click();\r\n    });\r\n\r\n    // 파일 드래그 앤 드랍\r\n    $('#file_upload').on({\r\n        'dragover'  : function(e) {\r\n            e.preventDefault();    \r\n        },\r\n        'drop'      : function(e) {\r\n            e.preventDefault();\r\n            var file = e.originalEvent.dataTransfer.files[0];\r\n            imgCheck(file);\r\n        }\r\n    });\r\n\r\n    // 파일 업로드 후 로직\r\n    $('#file_data').change(function() {\r\n        for(var i = 0; i < this.files.length; i++) {\r\n            var file = this.files[i];\r\n            imgCheck(file);\r\n        }\r\n        $(\"#file_data\").val(\"\");\r\n    });\r\n\r\n    // 이미지 판별 로직\r\n    function imgCheck(file) {\r\n        if(file.type.indexOf('image') !== -1) {\r\n            img_id++;\r\n            readURL(file,img_id);\r\n        }\r\n        else {\r\n            _common_js__WEBPACK_IMPORTED_MODULE_3__.default.alert('이미지 아님!','이미지를 업로드해주세요','warning');\r\n        }\r\n    }\r\n\r\n    // 썸네일 이미지 읽기\r\n    function readURL(file,id) {        \r\n        createFileDiv(id);\r\n        var reader = new FileReader();        \r\n        reader.onload = function (e) {\r\n            $(`#img_${id}`).attr('src', e.target.result);  \r\n        }\r\n        reader.readAsDataURL(file);\r\n        $(\"#file_box\").sortable();\r\n    }\r\n\r\n    // 썸네일 생성\r\n    function createFileDiv(id) {\r\n        var div     = document.createElement('div');\r\n        var c_div   = document.createElement('div');\r\n        var close   = document.createTextNode('ⓧ');\r\n        var img     = document.createElement('img');\r\n        div.setAttribute('id',`img_box_${id}`);\r\n        div.setAttribute('class',`drag_div`);\r\n        img.setAttribute('id',`img_${id}`);\r\n        div.append(img);\r\n        c_div.setAttribute('class','img_close');\r\n        c_div.setAttribute('data-id',id);\r\n        c_div.appendChild(close);\r\n        div.append(c_div);\r\n        $('#file_box').append(div);\r\n        \r\n        // 썸네일 이미지 삭제\r\n        $('.img_close').click(function() {\r\n            var t_img_id = $(this).data('id');\r\n            $(`#img_box_${t_img_id}`).remove();\r\n        });\r\n    }\r\n    \r\n});\n\n//# sourceURL=webpack://startup/./front/js/foodUpload.js?");
+
+/***/ }),
+
 /***/ "./front/js/global.js":
 /*!****************************!*\
   !*** ./front/js/global.js ***!
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing'],\r\n    [['disappearance']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing','food'],\r\n    [['disappearance'],['foodUpload']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
 
 /***/ }),
 
@@ -37,6 +47,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst protocol = location.protocol;\r\nconst hostName = location.hostname;\r\nconst port = (location.port !== '')? ':' + location.port : location.port;\r\n\r\nconst hostUrl   = protocol + '//' + hostName + port;\r\n\r\nconst snsUrl    = hostUrl + '/sns';\r\nconst snsCBUrl  = snsUrl + '/cb';\r\n\r\nconst tokenUrl  = hostUrl + '/token';\r\nconst checkUrl  = tokenUrl + '/check';\r\n\r\nconst crosswordUrl = hostUrl + '/crossword';\r\n\r\nconst rpc = {\r\n    hostUrl : hostUrl,\r\n    crosswordSearchUrl : crosswordUrl + '/search',\r\n    snsCBUrl : snsCBUrl,\r\n    checkUrl : checkUrl\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rpc);\n\n//# sourceURL=webpack://startup/./front/js/rpc.js?");
+
+/***/ }),
+
+/***/ "./front/css/foodUpload.css":
+/*!**********************************!*\
+  !*** ./front/css/foodUpload.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/foodUpload.css?");
 
 /***/ })
 
@@ -100,7 +120,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/common.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/foodUpload.js");
 /******/ 	
 /******/ })()
 ;

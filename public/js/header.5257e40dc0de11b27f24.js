@@ -26,17 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing'],\r\n    [['disappearance']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing','food'],\r\n    [['disappearance'],['foodUpload']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
 
 /***/ }),
 
-/***/ "./front/js/missing.js":
-/*!*****************************!*\
-  !*** ./front/js/missing.js ***!
-  \*****************************/
+/***/ "./front/js/header.js":
+/*!****************************!*\
+  !*** ./front/js/header.js ***!
+  \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_missing_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/missing.css */ \"./front/css/missing.css\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _global_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global.js */ \"./front/js/global.js\");\n\r\n\r\n\r\n\r\n$(function() {\r\n  function getLocation() {\r\n    if (navigator.geolocation) { // GPS를 지원하면\r\n      navigator.geolocation.getCurrentPosition(function(position) {\r\n        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스\r\n        var options = { //지도를 생성할 때 필요한 기본 옵션\r\n            center: new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude), //지도의 중심좌표.\r\n            level: 3 //지도의 레벨(확대, 축소 정도)\r\n        };\r\n\r\n        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴\r\n\r\n        var mapTypeControl = new kakao.maps.MapTypeControl();\r\n        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);\r\n\r\n        var zoomControl = new kakao.maps.ZoomControl();\r\n        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);\r\n\r\n        var markerPosition  = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);         \r\n\r\n        var clickMaker = new kakao.maps.Marker({\r\n          position: markerPosition\r\n        });\r\n\r\n        var infowindow = new kakao.maps.InfoWindow({\r\n          position: markerPosition\r\n        });        \r\n\r\n        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {\r\n          infowindow.close();\r\n          var latlng  = mouseEvent.latLng;\r\n          var content = `\r\n          <div class=\"if_content\">\r\n            <span id=\"disappearance\">신고하기</span>\r\n            <div class=\"close\" id=\"ifClose\">X</div>\r\n          </div>\r\n          `;\r\n          infowindow = new kakao.maps.InfoWindow({\r\n            position : latlng, \r\n            content : content\r\n          });\r\n          //TODO\r\n          var clickMakerImage = new kakao.maps.MarkerImage(\r\n            './js/3fcb3289971ef190d26c.png',\r\n            new kakao.maps.Size(41, 45), new kakao.maps.Point(20, 40)\r\n          );\r\n          clickMaker.setImage(clickMakerImage);\r\n          clickMaker.setPosition(latlng);\r\n          clickMaker.setMap(map);\r\n          clickMaker.setVisible(true);\r\n          infowindow.open(map, clickMaker);\r\n          $('#disappearance').off().on('click', function() {\r\n            _global_js__WEBPACK_IMPORTED_MODULE_2__.default.latlng = latlng;\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML('disappearance');\r\n          });\r\n          $('#ifClose').off().on('click', function() {\r\n            clickMaker.setVisible(false);\r\n            infowindow.close();\r\n          });\r\n        });\r\n\r\n        map.relayout();\r\n      }, function(error) {\r\n        console.error(error);\r\n      }, {\r\n        enableHighAccuracy: false,\r\n        maximumAge: 0,\r\n        timeout: Infinity\r\n      });\r\n    } else {\r\n      _common_js__WEBPACK_IMPORTED_MODULE_1__.default.alert('GPS를 지원하지 않습니다','','error');\r\n    }\r\n  }\r\n\r\n  getLocation();\r\n});\r\n\r\n\n\n//# sourceURL=webpack://startup/./front/js/missing.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_header_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/header.css */ \"./front/css/header.css\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n/* harmony import */ var _global_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./global.js */ \"./front/js/global.js\");\n\r\n\r\n\r\n\r\n\r\n$(function() {\r\n    const headerData = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session(['point','name'],'get');\r\n    const point = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.numberFormat(headerData.point);\r\n    $('#header #header_point').text(point+'P');\r\n    $('#header #header_name').text(headerData.name + '님');\r\n\r\n    $('#header_title').click(function() {\r\n        _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','delete');\r\n        location.href = _rpc_js__WEBPACK_IMPORTED_MODULE_2__.default.hostUrl;\r\n    });\r\n    $('#header_back').click(function() {\r\n        _global_js__WEBPACK_IMPORTED_MODULE_3__.default.history = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','get').history;\r\n        if(_global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[1].indexOf(_global_js__WEBPACK_IMPORTED_MODULE_3__.default.history) >= 0) $('#header_title').click();\r\n        else {\r\n            for(var i = 0; i < _global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[2].length; i++) {\r\n                var item = _global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[2][i];\r\n                if(item.indexOf(_global_js__WEBPACK_IMPORTED_MODULE_3__.default.history) >= 0) {\r\n                    var history = _global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[1][i];\r\n                    _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session({'history':history});\r\n                    location.href = _rpc_js__WEBPACK_IMPORTED_MODULE_2__.default.hostUrl;\r\n                }\r\n            }\r\n        }\r\n    });\r\n})\n\n//# sourceURL=webpack://startup/./front/js/header.js?");
 
 /***/ }),
 
@@ -50,13 +50,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./front/css/missing.css":
-/*!*******************************!*\
-  !*** ./front/css/missing.css ***!
-  \*******************************/
+/***/ "./front/css/header.css":
+/*!******************************!*\
+  !*** ./front/css/header.css ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/missing.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/header.css?");
 
 /***/ })
 
@@ -120,7 +120,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/missing.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/header.js");
 /******/ 	
 /******/ })()
 ;

@@ -57,7 +57,7 @@ $(function() {
     function createFileDiv(id) {
         var div     = document.createElement('div');
         var c_div   = document.createElement('div');
-        var close   = document.createTextNode('ⓧ');
+        var close   = document.createTextNode('X');
         var img     = document.createElement('img');
         div.setAttribute('id',`img_box_${id}`);
         div.setAttribute('class',`drag_div`);
@@ -70,10 +70,30 @@ $(function() {
         $('#file_box').append(div);
         
         // 썸네일 이미지 삭제
-        $('.img_close').click(function() {
+        $('.img_close').off().on('click', function() {
             var t_img_id = $(this).data('id');
             $(`#img_box_${t_img_id}`).remove();
         });
-    }
+
+        // 대표 썸네일 선택
+        $('.drag_div').off().on('click', function() {
+            $('.rep_box').remove();
+            $('.drag_div').removeClass('rep_img');
+            $(this).addClass('rep_img');
+            var rep_box     = document.createElement('span');
+            var rep         = document.createElement('span');
+            var rep_txt     = document.createTextNode('대표');
+            rep_box.setAttribute('class', 'rep_box');
+            rep.setAttribute('class', 'rep');
+            rep.appendChild(rep_txt);
+            rep_box.appendChild(rep);
+            $(this).append(rep_box);
+        });
+    }    
+
+    // 텍스트 높이 조절
+    $('#file_text').on('keydown keyup', function () {
+        $(this).height(1).height( $(this).prop('scrollHeight')+12 );
+    });
     
 });

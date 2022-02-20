@@ -26,17 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing'],\r\n    [['disappearance']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing','food'],\r\n    [['disappearance'],['foodUpload']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
 
 /***/ }),
 
-/***/ "./front/js/header.js":
-/*!****************************!*\
-  !*** ./front/js/header.js ***!
-  \****************************/
+/***/ "./front/js/home.js":
+/*!**************************!*\
+  !*** ./front/js/home.js ***!
+  \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_header_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/header.css */ \"./front/css/header.css\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n/* harmony import */ var _global_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./global.js */ \"./front/js/global.js\");\n\r\n\r\n\r\n\r\n\r\n$(function() {\r\n    const headerData = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session(['point','name'],'get');\r\n    const point = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.numberFormat(headerData.point);\r\n    $('#header #header_point').text(point+'P');\r\n    $('#header #header_name').text(headerData.name + '님');\r\n\r\n    $('#header_title').click(function() {\r\n        _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','delete');\r\n        location.href = _rpc_js__WEBPACK_IMPORTED_MODULE_2__.default.hostUrl;\r\n    });\r\n    $('#header_back').click(function() {\r\n        _global_js__WEBPACK_IMPORTED_MODULE_3__.default.history = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','get').history;\r\n        if(_global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[1].indexOf(_global_js__WEBPACK_IMPORTED_MODULE_3__.default.history) >= 0) $('#header_title').click();\r\n        else {\r\n            for(var i = 0; i < _global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[2].length; i++) {\r\n                var item = _global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[2][i];\r\n                if(item.indexOf(_global_js__WEBPACK_IMPORTED_MODULE_3__.default.history) >= 0) {\r\n                    var history = _global_js__WEBPACK_IMPORTED_MODULE_3__.default.backHistory[1][i];\r\n                    _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session({'history':history});\r\n                    location.href = _rpc_js__WEBPACK_IMPORTED_MODULE_2__.default.hostUrl;\r\n                }\r\n            }\r\n        }\r\n    });\r\n})\n\n//# sourceURL=webpack://startup/./front/js/header.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_home_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/home.css */ \"./front/css/home.css\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n\r\n\r\n\r\n$(function() {\r\n    $('.home_box').off().on('click', function() {\r\n        const id = $(this).data('id');\r\n        if(!id) {\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.alert('서비스 준비중','다른 서비스를 이용해주세요','info');\r\n        }\r\n        else {\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML(id);\r\n        }\r\n    });\r\n});\n\n//# sourceURL=webpack://startup/./front/js/home.js?");
 
 /***/ }),
 
@@ -50,13 +50,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./front/css/header.css":
-/*!******************************!*\
-  !*** ./front/css/header.css ***!
-  \******************************/
+/***/ "./front/css/home.css":
+/*!****************************!*\
+  !*** ./front/css/home.css ***!
+  \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/header.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/home.css?");
 
 /***/ })
 
@@ -120,7 +120,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/header.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/home.js");
 /******/ 	
 /******/ })()
 ;

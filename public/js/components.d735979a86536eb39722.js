@@ -20,23 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./front/js/components.js":
+/*!********************************!*\
+  !*** ./front/js/components.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n\r\n\r\n\r\n$(function() {\r\n    const getComponents = (res) => {\r\n        \r\n        if(res.status === 'OK') {\r\n            for(var i = 0; i < res.data.components.length; i++) {\r\n                var title = res.data.components[i];\r\n                \r\n                var includeOption = {\r\n                    title   : `component/js/${title.substr(0,title.length-3)}`,\r\n                    tag     : 'components',\r\n                    module  : false\r\n                };\r\n                \r\n                _common_js__WEBPACK_IMPORTED_MODULE_0__.default.includeJavascript(includeOption);\r\n                var includeOption = {\r\n                    title   : `component/css/${title.substr(0,title.length-3)}`,\r\n                    tag     : 'components'\r\n                };\r\n                _common_js__WEBPACK_IMPORTED_MODULE_0__.default.includeStyleSheet(includeOption);\r\n            }            \r\n        }\r\n    }\r\n\r\n    const rpcOption = {\r\n        url : _rpc_js__WEBPACK_IMPORTED_MODULE_1__.default.hostUrl + '/components',\r\n        method  : 'get',\r\n        CBF : getComponents\r\n    }\r\n    _common_js__WEBPACK_IMPORTED_MODULE_0__.default.rpcCall(rpcOption);\r\n\r\n});\n\n//# sourceURL=webpack://startup/./front/js/components.js?");
+
+/***/ }),
+
 /***/ "./front/js/global.js":
 /*!****************************!*\
   !*** ./front/js/global.js ***!
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing'],\r\n    [['disappearance']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
-
-/***/ }),
-
-/***/ "./front/js/index.js":
-/*!***************************!*\
-  !*** ./front/js/index.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/index.css */ \"./front/css/index.css\");\n/* harmony import */ var _common_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common.js */ \"./front/js/common.js\");\n/* harmony import */ var _rpc_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rpc.js */ \"./front/js/rpc.js\");\n\r\n\r\n\r\n\r\n$(function(){\r\n    var tokenCheck = (res) => {\r\n        if(res.status === 'OK') {\r\n            const sessionData = {\r\n                name    : res.data.name,\r\n                point   : res.data.point\r\n            }\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session(sessionData);\r\n            const includeOption = {\r\n                title   : 'header',\r\n                tag     : 'header'\r\n            };\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML(includeOption);\r\n            const componentOption = {\r\n                title   : 'components',\r\n                tag     : 'components',\r\n                module  : true\r\n            };\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeJavascript(componentOption);\r\n            var data = _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','get');\r\n            if(data.history) {\r\n                _common_js__WEBPACK_IMPORTED_MODULE_1__.default.session('history','delete');\r\n                _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML(data.history);\r\n            }\r\n            else {\r\n                _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML('home');\r\n            }            \r\n        }\r\n        else {\r\n            _common_js__WEBPACK_IMPORTED_MODULE_1__.default.includeHTML('login');            \r\n        }\r\n    }\r\n    \r\n    var rpcOption = {\r\n        url : _rpc_js__WEBPACK_IMPORTED_MODULE_2__.default.checkUrl,\r\n        CBF : tokenCheck\r\n    }\r\n    _common_js__WEBPACK_IMPORTED_MODULE_1__.default.rpcCall(rpcOption);\r\n})\n\n//# sourceURL=webpack://startup/./front/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar history;\r\nvar latlng;\r\nconst backHistory = [\r\n    'home',\r\n    ['missing','food'],\r\n    [['disappearance'],['foodUpload']]\r\n]\r\n\r\nvar global = {\r\n    history : history,\r\n    latlng : latlng,\r\n    backHistory : backHistory\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (global);\n\n//# sourceURL=webpack://startup/./front/js/global.js?");
 
 /***/ }),
 
@@ -47,16 +47,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst protocol = location.protocol;\r\nconst hostName = location.hostname;\r\nconst port = (location.port !== '')? ':' + location.port : location.port;\r\n\r\nconst hostUrl   = protocol + '//' + hostName + port;\r\n\r\nconst snsUrl    = hostUrl + '/sns';\r\nconst snsCBUrl  = snsUrl + '/cb';\r\n\r\nconst tokenUrl  = hostUrl + '/token';\r\nconst checkUrl  = tokenUrl + '/check';\r\n\r\nconst crosswordUrl = hostUrl + '/crossword';\r\n\r\nconst rpc = {\r\n    hostUrl : hostUrl,\r\n    crosswordSearchUrl : crosswordUrl + '/search',\r\n    snsCBUrl : snsCBUrl,\r\n    checkUrl : checkUrl\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rpc);\n\n//# sourceURL=webpack://startup/./front/js/rpc.js?");
-
-/***/ }),
-
-/***/ "./front/css/index.css":
-/*!*****************************!*\
-  !*** ./front/css/index.css ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://startup/./front/css/index.css?");
 
 /***/ })
 
@@ -120,7 +110,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/index.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./front/js/components.js");
 /******/ 	
 /******/ })()
 ;
