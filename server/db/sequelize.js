@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const { Sequelize, DataTypes, Model, Op } = require('sequelize');
 const dbUrl = process.env.DATABASE_URL || require('./db_config');
 const fs = require('fs');
 const path = require('path');
@@ -19,7 +19,7 @@ const db = {};
 const files = fs.readdirSync(path.join(__dirname,'models'));
 files.forEach((file)=>{
     const f = file.split('.')[0];
-    const model = require(path.join(__dirname,'models',f))(sequelize,DataTypes,Model);
+    const model = require(path.join(__dirname,'models',f))(sequelize,DataTypes,Model,Op);
     db[f] = model;
 });
 

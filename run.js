@@ -2,7 +2,7 @@ const express = require('express');
 const sequelize = require('./server/db/sequelize');
 const app = express();
 const port = process.env.PORT || 5100;
-const accessRefer = ['http://localhost:5100','https://k-start-up.herokuapp.com/','http://localhost:5100/'];
+const accessRefer = ['https://k-start-up.herokuapp.com/'];
 const morgan = require('morgan');
 const {logger,stream} = require('./server/logger');
 const requestIp = require('request-ip');
@@ -29,7 +29,7 @@ app.use('/component',express.static(`./front/component`));
 app.use(morgan('HTTP/:http-version :method :remote-addr :url :remote-user :status :res[content-length] :referrer :user-agent :response-time ms',{stream}));
 app.use(requestIp.mw());
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV === 'production') {
     app.use((req,res,next) => {
         if(accessRefer.indexOf(req.headers.referer) === -1 && !(req.path === '/' || req.path === '/sns/cb')) {
             res.send('잘못된 접근입니다.');

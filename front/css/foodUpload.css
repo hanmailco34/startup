@@ -26,6 +26,7 @@
 .show_file_upload .drag_div {
     position: relative;
     float: left;
+    border: 3px solid transparent;
 }
 
 .show_file_upload .drag_div img {
@@ -35,7 +36,63 @@
 
 .show_file_upload .drag_div .img_close {
     position:absolute;
-    right:6px;
-    top:-7px;
+    right: 0px;
+    top: 0px;
     cursor:pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    background: #fff;
+    color: #333;
+    border-radius: 50%;
+    box-shadow: 1px 1px 4px 0 rgb(0 0 0 / 50%);
+    text-align: center;
+    font-weight: 600;
+}
+
+.show_file_upload .rep_img {
+    border: 3px solid #2AC1BC;
+}
+
+.show_file_upload .drag_div .rep_box {
+    position: absolute;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    left: -5px;
+    top: -5px;
+    display: block;
+}
+
+.show_file_upload .drag_div .rep_box::before {
+    content: "";
+    position: absolute;
+    border: 6px solid;
+    border-color: transparent #0e726f transparent transparent;
+    top: 48px;
+    left: -7px;
+}
+
+.show_file_upload .drag_div .rep_box::after {
+    content: "";
+    position: absolute;
+    border: 6px solid;
+    border-color: transparent transparent #0e726f transparent;
+    top: -7px;
+    left: 48px;
+}
+
+.show_file_upload .drag_div .rep_box .rep {
+    background: #2AC1BC;
+    width: 100px;
+    transform: rotate(-45deg) translate(-29px, -13px);
+    text-align: center;
+    display: block;
+    font-size: 24px;
+}
+
+.upload_text_box .upload_text {
+    width: 100%;
+    min-height: 100px;
+    resize: none;
 }
