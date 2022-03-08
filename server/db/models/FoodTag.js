@@ -45,6 +45,18 @@ module.exports = (sequelize,DataTypes,Model,Op) => {
                 ORDER BY tag_count DESC 
                 LIMIT 30)`,{type:sequelize.QueryTypes.SELECT})
         }
+
+        static setTag(foodId, content) {
+            content.split(/\n|\s/).forEach(e => {
+                if(e.substring(0,1) === '#') {
+                    this.create({
+                        foodId  : foodId,
+                        tag : e.substring(1)
+                    });
+                }
+            });
+            return;
+        }
     }
     
     const options = {

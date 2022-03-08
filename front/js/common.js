@@ -128,16 +128,29 @@ const commonFunc = {
             url     : option.url
         }
 
-        if(option.headers)  param['headers'] = option.headers;
+        if(option.headers) param['headers'] = option.headers;
         
-        if(option.method)   param['method'] = option.method;
+        if(option.method) param['method'] = option.method;
         else                {
             param['method'] = 'post';
         }
 
         if(param['method'].toLowerCase() === 'post') {
-            param['contentType'] = "application/json; charset=utf-8";
-            if(option.data) param['data'] = JSON.stringify(option.data);
+            if(option.file) {
+                param['contentType'] = false;
+                param['processData'] = false;
+                const formData  = new FormData();
+                for(var i = 0; i < option.data.fileList.length; i++) {
+                    formData.append('fileList', option.data.fileList[i]);
+                }
+                formData.append('content', option.data.content);
+                formData.append('rep', option.data.rep);
+                param['data'] = formData;
+            }
+            else {
+                param['contentType'] = "application/json; charset=utf-8";
+                if(option.data) param['data'] = JSON.stringify(option.data);
+            }            
         }
         else {
             if(option.data) param['data'] = option.data;
@@ -298,6 +311,24 @@ const commonFunc = {
             if(key === item[0]) return item[1];
         }
         return null;
+    },
+    goHome() {
+        this.session('history','delete');
+        location.href = rpc.hostUrl;
+    },
+    back() {
+        global.history = this.session('history','get').history;
+        if(global.backHistory[1].indexOf(global.history) >= 0) this.goHome();
+        else {
+            for(var i = 0; i < global.backHistory[2].length; i++) {
+                var item = global.backHistory[2][i];
+                if(item.indexOf(global.history) >= 0) {
+                    var history = global.backHistory[1][i];
+                    this.session({'history':history});
+                    location.href = rpc.hostUrl;
+                }
+            }
+        }
     }
 }
 

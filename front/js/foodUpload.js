@@ -1,10 +1,11 @@
 import '../css/foodUpload.css' assert { type: "css" };
 import rpc from './rpc.js';
-import global from './global.js';
 import common from './common.js';
 
 $(function() {
-    var img_id = 0;
+    var img_id      = 0;
+    var fileList    = [];
+
     // 선택영역 클릭시 파일업로드 나타남
     $('#file_upload').click(function() {
         $('#file_data').click();
@@ -34,8 +35,9 @@ $(function() {
     // 이미지 판별 로직
     function imgCheck(file) {
         if(file.type.indexOf('image') !== -1) {
-            img_id++;
+            fileList.push(file);
             readURL(file,img_id);
+            img_id++;
         }
         else {
             common.alert('이미지 아님!','이미지를 업로드해주세요','warning');
@@ -92,17 +94,27 @@ $(function() {
     }    
 
     // 텍스트 높이 조절 & 해시태그
-    $('#file_text').on('keyup', function (event) {
+    $('#file_text').on('keydown keyup', function (event) {
         var key     = event.key;
         var not_key = ['Shift', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-        
         if(not_key.indexOf(key) === -1) {
-            $('#hashtag_box').hide();
-            $(this).height(1).height( $(this).prop('scrollHeight')+12);
-            var option = {
-                cmd : 2
+            // 연속 스페이스 금지
+            var _this       = $(this);
+            var this_value  = _this.val(); 
+            var space = this_value.substr(this_value.length-2, this_value.length);
+            
+            if(space === '  ') {
+                _this.val(this_value.substring(0,this_value.length-1));
+                return;
             }
-            findHashTag(rpcCallHashTag,option);
+            else if(key !== ' ') {
+                $('#hashtag_box').hide();
+                _this.height(1).height(_this.prop('scrollHeight')+12);
+                var option = {
+                    cmd : 2
+                }
+                findHashTag(rpcCallHashTag,option);
+            }            
         }
     });
 
@@ -113,7 +125,7 @@ $(function() {
 
             if(res.data.length === 0) {
                 var appendHtml = `
-                <div>처음으로 해시태그 입력하는 사람</div>
+                <div>이 단어를 해시태그로 처음 입력하는 사람</div>
                 `;
                 $('#hashtag_box').append(appendHtml);
             }
@@ -189,17 +201,58 @@ $(function() {
         return textareaNew;
     }
 
+    // 서버로 ajax 호출
     function rpcCallHashTag(src,idx) {
         $('#hashtag_loading').show();
         var query = src[idx].substr(1);
         var option = {
             url     : rpc.getHashTagUrl,
             data    : {
-                "tag" : query,
-                "id"  : 29
+                "tag" : query
             },
             CBF     : getHashTagCB
         }
         common.rpcCall(option);
+    }
+
+    // 등록버튼 함수
+    $('#file_upload_btn').click(function() {
+        var param       = {
+            content     : $('#file_text').val(),
+            fileList    : [],
+            rep         : 0
+        };
+
+        var imgList     = $('.drag_div');
+
+        for(var i = 0; i < imgList.length; i++) {
+            var imgId   = imgList[i].id.split('_')[2];
+            var file    = fileList[imgId];
+            param.fileList.push(file);
+            
+            var rep     = $(imgList[i]).find('.rep_box');
+            if(rep.length === 1) param.rep = i;
+        }
+
+        var option = {
+            url     : rpc.foodUploadUrl,
+            data    : param,
+            CBF     : setUploadCB,
+            file    : true
+        }
+        
+        common.rpcCall(option)
+    });
+
+    function setUploadCB(res) {
+        if(res.status == 'OK') {
+            common.alert({
+                title : '등록되었습니다',
+                content : '축하합니다',
+                isConfirmed : function() {
+                    common.back();
+                }
+            });
+        }
     }
 });

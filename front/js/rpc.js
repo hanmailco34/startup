@@ -12,12 +12,14 @@ const checkUrl  = tokenUrl + '/check';
 
 const foodUrl       = hostUrl + '/food';
 const getHashTagUrl = foodUrl + '/getTag';
+const foodUploadUrl = foodUrl + '/upload';
 
 const rpc = {
     hostUrl         : hostUrl,
     snsCBUrl        : snsCBUrl,
     checkUrl        : checkUrl,
-    getHashTagUrl   : getHashTagUrl
+    getHashTagUrl   : getHashTagUrl,
+    foodUploadUrl   : foodUploadUrl
 }
 
 export default rpc;

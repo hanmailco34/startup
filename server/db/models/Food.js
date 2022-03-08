@@ -1,6 +1,13 @@
 module.exports = (sequelize,DataTypes,Model) => {
     class Food extends Model {
-        
+        static uploadFood(mbId, content, repPath, imagePath) {
+            return this.create({
+                mbId            : mbId, 
+                content         : content,
+                repImagePath    : repPath,
+                ImagePath       : imagePath
+            });
+        }
     }
     
     const options = {

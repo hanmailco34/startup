@@ -7,9 +7,16 @@ const aud           = 'dangdang';
 const exp           = '24h';
 const privatekey    = (process.env.NODE_ENV !== 'production') ? fs.readFileSync('privatekey') : process.env.privatekey;
 const publickey     = fs.readFileSync('publickey');
+const signOptions   = {
+    issuer : iss,
+    subject : sub,
+    audience : aud,
+    maxAge : exp,
+    algorithms : ["RS256"]
+  }
 
 exports.setToken = function(info,res) {
-    const signOptions = {
+    const signOption = {
         issuer      : iss,
         subject     : sub,
         audience    : aud,
@@ -24,7 +31,7 @@ exports.setToken = function(info,res) {
             name        : info.name,
             email       : info.email,
             point       : info.point
-        }, privatekey, signOptions);
+        }, privatekey, signOption);
         
         res.cookie("access_token", token, {
             maxAge: 60 * 60 * 60 * 1000
@@ -36,17 +43,10 @@ exports.setToken = function(info,res) {
     }
 }
 
-exports.getToken = function(req, res, next) {
+exports.nextToken = function(req, res, next) {
     const token = req.cookies.access_token;
     if(!token) {
         return next();
-    }    
-    const signOptions = {
-      issuer : iss,
-      subject : sub,
-      audience : aud,
-      maxAge : exp,
-      algorithms : ["RS256"]
     }
     try {
         const verify = jwt.verify(token,publickey,signOptions);
@@ -61,13 +61,6 @@ exports.getToken = function(req, res, next) {
 exports.check = (path, app) => {
     app.post(path + '/check', (req,res) => {
         const token = req.cookies.access_token;
-        const signOptions = {
-            issuer : iss,
-            subject : sub,
-            audience : aud,
-            maxAge : exp,
-            algorithms : ["RS256"]
-        }
         logger.info(`ip:${req.clientIp}, token:${token}`);
         try {
             const verify = jwt.verify(token,publickey,signOptions);
@@ -77,4 +70,16 @@ exports.check = (path, app) => {
             return res.json({status:'OOPS',msg:'잘못된 토큰입니다.'});
         }
     })
+}
+
+exports.getToken = (req) => {
+    console.log(req.cookies.access_token);
+    const token = req.cookies.access_token;
+    try {
+        const verify = jwt.verify(token,publickey,signOptions);
+        return {status:'OK',data:verify};
+    }
+    catch {
+        return {status:'OOPS',msg:'잘못된 토큰입니다.'};
+    }
 }

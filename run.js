@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const {logger,stream} = require('./server/logger');
 const requestIp = require('request-ip');
 const cookieParser = require('cookie-parser');
-const {getToken} = require('./server/token');
+const {nextToken} = require('./server/token');
 require('dotenv').config();
 const environment = (process.env.NODE_ENV === 'development') ? 'front' : 'public';
 
@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use((req,res,next) => {
-    getToken(req,res,next); 
+    nextToken(req,res,next); 
 })
 
 app.use('/html',express.static(`./${environment}/html`));

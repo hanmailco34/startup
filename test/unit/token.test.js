@@ -21,14 +21,14 @@ describe('token', () => {
     test('미들웨어 토큰 정상값', () => {
         req.cookies.access_token = setToken;
         res.cookies.access_token = setToken;
-        token.getToken(req, res, next);
+        token.nextToken(req, res, next);
         expect(res.cookies.access_token).toBe(setToken);
     });
 
     test('미들웨어 토큰 비정상값', () => {
         req.cookies.access_token = setToken + '1';
         res.cookies.access_token = setToken;
-        token.getToken(req, res, next);
+        token.nextToken(req, res, next);
         var result = {
             "options": {
                 "path": "/"
@@ -38,7 +38,7 @@ describe('token', () => {
         expect(res.cookies.access_token).toMatchObject(result);
     });
 
-    test('토큰값 가져오기', async () => {
+    test('토큰 체크하기', async () => {
         const response = await request(app).post('/token/check').set('Cookie',`access_token=${setToken}`);
         expect(response.body).toMatchObject({status:'OK'});
     });
@@ -46,5 +46,11 @@ describe('token', () => {
     test('토큰 잘못된 값 가져오기', async () => {
         const response = await request(app).post('/token/check').set('Cookie',`access_token=${setToken}1`);
         expect(response.body).toMatchObject({status:'OOPS'});
+    });
+
+    test('토큰값 가져오기', () => {
+        req.cookies.access_token = setToken;
+        var verify = token.getToken(req);
+        expect(verify.data).toMatchObject(infoData);
     });
 });
