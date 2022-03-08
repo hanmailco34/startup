@@ -124,7 +124,6 @@ function backShowHeader(title) {
 
 const commonFunc = {
     rpcCall(option) {
-        const token = this.getCookie('access_token');
         var param = {
             url     : option.url
         }
@@ -132,9 +131,17 @@ const commonFunc = {
         if(option.headers)  param['headers'] = option.headers;
         
         if(option.method)   param['method'] = option.method;
-        else                param['method'] = 'POST';
+        else                {
+            param['method'] = 'post';
+        }
 
-        if(option.data)     param['data'] = options.data;
+        if(param['method'].toLowerCase() === 'post') {
+            param['contentType'] = "application/json; charset=utf-8";
+            if(option.data) param['data'] = JSON.stringify(option.data);
+        }
+        else {
+            if(option.data) param['data'] = option.data;
+        }
 
         $.ajax(param)
         .done((res)=>option.CBF(res,option.CBP))

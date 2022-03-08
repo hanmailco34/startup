@@ -23,6 +23,12 @@
     margin-bottom: 20px;
 }
 
+.show_file_upload::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 .show_file_upload .drag_div {
     position: relative;
     float: left;
@@ -91,8 +97,64 @@
     font-size: 24px;
 }
 
+.upload_text_box {
+    position: relative;
+}
+
 .upload_text_box .upload_text {
-    width: 100%;
+    width: calc(100% - 12px);
     min-height: 100px;
     resize: none;
+    background-color: transparent;
+    padding: 5px;
+    color: transparent;
+    caret-color: #FC630F;
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+.upload_text_box .upload_text_div {
+    position: absolute;
+    font-size: 1rem;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    z-index: -1;
+}
+
+.upload_text_box .upload_text_div .hashtag {
+    background-color: #2AC1BC;
+    color: white;
+}
+
+.foodUpload_container .hashtag_outer_box {
+    position: relative;
+    height: 280px;
+}
+
+.foodUpload_container .hashtag_box {
+    height: 280px;
+    width: 100%;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    background-color: white;
+    display: none;
+}
+
+.foodUpload_container .hashtag_loading {
+    width: 100%;
+    height: 280px;
+    background-image: url(../img/loading.gif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    display: none;
+}
+
+.foodUpload_container .hashtag_box .get_tag {
+    cursor: pointer;
+    border-bottom: 1px solid #dbdbdb;
 }

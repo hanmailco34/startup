@@ -4,12 +4,19 @@ body {
     font-size: 35px;
 }
 
+input:focus, textarea:focus {
+    outline: none;
+}
+
 #loading {
     width: 100vw;
     height: 100vh;
     background-image: url(../img/loading.gif);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
     display: none;
 }
 

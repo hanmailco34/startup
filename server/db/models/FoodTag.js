@@ -19,23 +19,31 @@ module.exports = (sequelize,DataTypes,Model,Op) => {
             })
         }
         static getRecentTag(tagName, mbId) {
-            return this.findAll({
-                attributes : [
-                    sequelize.literal('distinct on(tag) "tag"'),
-                    'createdAt'
-                ],
-                include: [
-                    {
-                        model: sequelize.models.Food,
-                        where: {
-                            mbId : mbId
-                        },
-                        require: true,
-                        attributes: []
-                    }
-                ],
-                raw : true
-            })
+            return sequelize.query(`(select tag, 0 "tag_count" from (
+                SELECT distinct("tag"), "FoodTag"."createdAt" 
+                FROM "FoodTag" "FoodTag"
+                inner join "Food" f on f.id = "FoodTag"."foodId" 
+                and f."mbId" = ${mbId}
+                WHERE "FoodTag"."tag" LIKE '${tagName}%'
+                ORDER BY "FoodTag"."createdAt" DESC 
+                limit 3
+                )tag)
+                union all
+                (SELECT "tag", count("tag") "tag_count"
+                FROM "FoodTag" "FoodTag" 
+                WHERE "FoodTag"."tag" LIKE '${tagName}%'
+                and tag not in (select tag from (
+                SELECT distinct("tag"), "FoodTag"."createdAt" 
+                FROM "FoodTag" "FoodTag"
+                inner join "Food" f on f.id = "FoodTag"."foodId" 
+                and f."mbId" = ${mbId}
+                WHERE "FoodTag"."tag" LIKE '${tagName}%'
+                ORDER BY "FoodTag"."createdAt" DESC 
+                limit 3
+                )tag)
+                GROUP BY "tag"
+                ORDER BY tag_count DESC 
+                LIMIT 30)`,{type:sequelize.QueryTypes.SELECT})
         }
     }
     
@@ -61,6 +69,24 @@ module.exports = (sequelize,DataTypes,Model,Op) => {
     sequelize.models.FoodTag.belongsTo(sequelize.models.Food, {
         foreignKey : 'foodId'
     });
+
+    /* return this.findAll({
+        attributes : [
+            sequelize.literal('distinct on(tag) "tag"'),
+            'createdAt'
+        ],
+        include: [
+            {
+                model: sequelize.models.Food,
+                where: {
+                    mbId : mbId
+                },
+                require: true,
+                attributes: []
+            }
+        ],
+        raw : true
+    }) */
 
     return FoodTag;
 }

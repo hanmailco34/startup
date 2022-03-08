@@ -10,13 +10,14 @@ const snsCBUrl  = snsUrl + '/cb';
 const tokenUrl  = hostUrl + '/token';
 const checkUrl  = tokenUrl + '/check';
 
-const crosswordUrl = hostUrl + '/crossword';
+const foodUrl       = hostUrl + '/food';
+const getHashTagUrl = foodUrl + '/getTag';
 
 const rpc = {
-    hostUrl : hostUrl,
-    crosswordSearchUrl : crosswordUrl + '/search',
-    snsCBUrl : snsCBUrl,
-    checkUrl : checkUrl
+    hostUrl         : hostUrl,
+    snsCBUrl        : snsCBUrl,
+    checkUrl        : checkUrl,
+    getHashTagUrl   : getHashTagUrl
 }
 
 export default rpc;
